@@ -1,0 +1,11 @@
+query FindByCategory($category: String!) {
+  posts(where: { categories: { label: $category } }) {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}

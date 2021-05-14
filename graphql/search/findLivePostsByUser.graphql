@@ -1,0 +1,11 @@
+query FindLivePostsByUser($user: String!) {
+  posts(where: { user: { username_contains: $user } }) {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}

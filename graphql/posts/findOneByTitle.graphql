@@ -1,0 +1,11 @@
+query FindOneByTitle($title: String!) {
+  posts(where: { title: $title }) {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}

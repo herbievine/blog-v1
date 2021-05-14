@@ -1,0 +1,11 @@
+query FindOneBySlug($slug: String!) {
+  posts(where: { slug: $slug }) {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}

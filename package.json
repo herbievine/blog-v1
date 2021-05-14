@@ -1,15 +1,37 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "description": "Blog Client",
+  "author": "Herbie Vine <vineherbie@gmail.com> (https://herbievine.com)",
+  "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "serve": "next -p 4000",
+    "build": "next build && next export",
+    "start": "next start",
+    "type-check": "tsc",
+    "prettier": "prettier -w \"(pages|components|utils)/**/*.(ts|js|tsx|jsx)\"",
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.17",
+    "@headlessui/react": "^1.2.0",
+    "graphql": "^15.5.0",
     "next": "10.2.0",
+    "next-apollo": "^5.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.21.4",
+    "@graphql-codegen/typescript": "1.22.0",
+    "@graphql-codegen/typescript-operations": "1.17.16",
+    "@graphql-codegen/typescript-react-apollo": "2.2.4",
+    "@types/react": "^17.0.5",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.15",
+    "prettier": "^2.3.0",
+    "tailwindcss": "^2.1.2",
+    "typescript": "^4.2.4"
   }
 }

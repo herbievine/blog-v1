@@ -1,0 +1,11 @@
+query FindLivePostsByTitle($title: String!) {
+  posts(where: { title_contains: $title }) {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}

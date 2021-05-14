@@ -1,0 +1,5 @@
+fragment Post on Posts {
+  title
+  slug
+  content
+}
