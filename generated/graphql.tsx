@@ -171,7 +171,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_At | CategoryConnectionUpdated_At | CategoryConnectionLabel | CategoryConnectionHexColor | CategoryConnectionPublished_At | CreateCategoryPayload | UpdateCategoryPayload | DeleteCategoryPayload | Posts | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnectionId | PostsConnectionCreated_At | PostsConnectionUpdated_At | PostsConnectionTitle | PostsConnectionSlug | PostsConnectionContent | PostsConnectionUser | PostsConnectionPublished_At | CreatePostPayload | UpdatePostPayload | DeletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_At | CategoryConnectionUpdated_At | CategoryConnectionLabel | CategoryConnectionHexColor | CategoryConnectionPublished_At | CreateCategoryPayload | UpdateCategoryPayload | DeleteCategoryPayload | Posts | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnectionId | PostsConnectionCreated_At | PostsConnectionUpdated_At | PostsConnectionTitle | PostsConnectionSlug | PostsConnectionContent | PostsConnectionUser | PostsConnectionPublished_At | CreatePostPayload | UpdatePostPayload | DeletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -323,9 +323,9 @@ export type MutationEmailConfirmationArgs = {
 };
 
 export type PostInput = {
-  title?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  slug: Scalars['String'];
+  content: Scalars['String'];
   user?: Maybe<Scalars['ID']>;
   categories?: Maybe<Array<Maybe<Scalars['ID']>>>;
   published_at?: Maybe<Scalars['DateTime']>;
@@ -338,9 +338,9 @@ export type Posts = {
   id: Scalars['ID'];
   created_at: Scalars['DateTime'];
   updated_at: Scalars['DateTime'];
-  title?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  content?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
+  slug: Scalars['String'];
+  content: Scalars['String'];
   user?: Maybe<UsersPermissionsUser>;
   published_at?: Maybe<Scalars['DateTime']>;
   categories?: Maybe<Array<Maybe<Category>>>;
@@ -782,6 +782,7 @@ export type UserInput = {
   blocked?: Maybe<Scalars['Boolean']>;
   role?: Maybe<Scalars['ID']>;
   posts?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  displayName?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -920,6 +921,7 @@ export type UsersPermissionsUser = {
   confirmed?: Maybe<Scalars['Boolean']>;
   blocked?: Maybe<Scalars['Boolean']>;
   role?: Maybe<UsersPermissionsRole>;
+  displayName?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Maybe<Posts>>>;
 };
 
@@ -959,6 +961,12 @@ export type UsersPermissionsUserConnectionConfirmed = {
 export type UsersPermissionsUserConnectionCreated_At = {
   __typename?: 'UsersPermissionsUserConnectionCreated_at';
   key?: Maybe<Scalars['DateTime']>;
+  connection?: Maybe<UsersPermissionsUserConnection>;
+};
+
+export type UsersPermissionsUserConnectionDisplayName = {
+  __typename?: 'UsersPermissionsUserConnectionDisplayName';
+  key?: Maybe<Scalars['String']>;
   connection?: Maybe<UsersPermissionsUserConnection>;
 };
 
@@ -1009,6 +1017,7 @@ export type UsersPermissionsUserGroupBy = {
   confirmed?: Maybe<Array<Maybe<UsersPermissionsUserConnectionConfirmed>>>;
   blocked?: Maybe<Array<Maybe<UsersPermissionsUserConnectionBlocked>>>;
   role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
+  displayName?: Maybe<Array<Maybe<UsersPermissionsUserConnectionDisplayName>>>;
 };
 
 export type CreateCategoryInput = {
@@ -1160,6 +1169,7 @@ export type EditUserInput = {
   blocked?: Maybe<Scalars['Boolean']>;
   role?: Maybe<Scalars['ID']>;
   posts?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  displayName?: Maybe<Scalars['String']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
 };
@@ -1211,12 +1221,12 @@ export type CategoryFragment = (
 
 export type PostFragment = (
   { __typename?: 'Posts' }
-  & Pick<Posts, 'title' | 'slug' | 'content'>
+  & Pick<Posts, 'title' | 'slug' | 'content' | 'created_at'>
 );
 
 export type UserFragment = (
   { __typename?: 'UsersPermissionsUser' }
-  & Pick<UsersPermissionsUser, 'id' | 'username' | 'email'>
+  & Pick<UsersPermissionsUser, 'id' | 'username' | 'email' | 'displayName'>
 );
 
 export type FindByCategoryQueryVariables = Exact<{
@@ -1350,6 +1360,7 @@ export const PostFragmentDoc = gql`
   title
   slug
   content
+  created_at
 }
     `;
 export const UserFragmentDoc = gql`
@@ -1357,6 +1368,7 @@ export const UserFragmentDoc = gql`
   id
   username
   email
+  displayName
 }
     `;
 export const FindByCategoryDocument = gql`
@@ -1490,7 +1502,7 @@ export type FindOneByTitleLazyQueryHookResult = ReturnType<typeof useFindOneByTi
 export type FindOneByTitleQueryResult = Apollo.QueryResult<FindOneByTitleQuery, FindOneByTitleQueryVariables>;
 export const FindLivePostsByCategoryDocument = gql`
     query FindLivePostsByCategory($category: String!) {
-  posts(where: {categories: {label: $category}}) {
+  posts(where: {categories: {label_contains: $category}}) {
     ...Post
     categories {
       ...Category

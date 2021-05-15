@@ -16,6 +16,8 @@
   "dependencies": {
     "@apollo/client": "^3.3.17",
     "@headlessui/react": "^1.2.0",
+    "@heroicons/react": "^1.0.1",
+    "dayjs": "^1.10.4",
     "graphql": "^15.5.0",
     "next": "10.2.0",
     "next-apollo": "^5.0.4",

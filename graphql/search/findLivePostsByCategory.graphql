@@ -1,5 +1,5 @@
 query FindLivePostsByCategory($category: String!) {
-  posts(where: { categories: { label: $category } }) {
+  posts(where: { categories: { label_contains: $category } }) {
     ...Post
     categories {
       ...Category

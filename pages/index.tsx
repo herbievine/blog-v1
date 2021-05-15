@@ -8,7 +8,7 @@ const Index: React.FC<IndexProps> = ({}) => {
   return (
     <>
       <Head>
-        <title>My Blog</title>
+        <title>Vuter</title>
       </Head>
       <div>
         <p>Hello!</p>

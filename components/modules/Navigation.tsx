@@ -26,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   return (
     <div className="h-12 px-4 flex items-center justify-between sticky top-0 z-50">
       <div className="text-sm uppercase font-bold text-gray-700">
-        <Link href={'/'}>Blog</Link>
+        <Link href={'/'}>Vuter</Link>
       </div>
       <div className="flex items-center justify-end">
         <div className="mr-4 flex items-center">
@@ -38,7 +38,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                   index !== 5 ? 'mr-6' : null
                 }`}
               >
-                <Link href={`/search?category=${category.toLowerCase()}`}>
+                <Link href={`/category/${category.toLowerCase()}`}>
                   {category}
                 </Link>
               </div>
@@ -77,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                 >
                   <Menu.Items
                     static
-                    className="absolute right-0 w-56 mt-2 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                    className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-md outline-none"
                   >
                     <div className="py-1">
                       {[...categories].map((category, index) =>
@@ -85,9 +85,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                           <Menu.Item
                             key={index}
                             onClick={() =>
-                              router.push(
-                                `/search?category=${category.toLowerCase()}`
-                              )
+                              router.push(`/category/${category.toLowerCase()}`)
                             }
                           >
                             {({ active }) => (
@@ -115,9 +113,10 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           <input
             className="w-44 py-1 px-3 bg-gray-200 rounded-md text-sm font-medium focus:outline-none"
             type="text"
+            // value={router.query.q ?? ''}
             placeholder="Search..."
             onChange={(e) =>
-              router.replace(`/search?post=${e.target.value.toLowerCase()}`)
+              router.replace(`/search?q=${e.target.value.toLowerCase()}`)
             }
           />
         </div>

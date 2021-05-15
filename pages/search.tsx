@@ -5,8 +5,10 @@ import {
   useFindLivePostsByTitleQuery,
   useFindLivePostsByUserQuery,
   useFindLivePostsByCategoryQuery,
-  useFindByCategoryQuery,
 } from '../generated/graphql'
+import SearchNotFound from '../components/errors/SearchNotFound'
+import SearchedPost from '../components/posts/SearchedPost'
+import DefaultWrapper from '../components/layout/DefaultWrapper'
 
 interface SearchProps {}
 
@@ -16,8 +18,9 @@ const Search: React.FC<SearchProps> = ({}) => {
   const router = useRouter()
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<Filter>('title')
-  const { data, loading } = router.query?.post
-    ? filter === 'title'
+  const filters = ['title', 'author', 'category']
+  const { data, loading } =
+    filter === 'title'
       ? useFindLivePostsByTitleQuery({
           variables: { title: search },
         })
@@ -28,56 +31,57 @@ const Search: React.FC<SearchProps> = ({}) => {
       : useFindLivePostsByCategoryQuery({
           variables: { category: search },
         })
-    : useFindByCategoryQuery({
-        variables: { category: search },
-      })
-  const filters = ['title', 'author', 'category']
 
   useEffect(() => {
     const { query } = router
 
-    if (!query.post && !query.category) {
+    if (!query.q) {
       router.replace('/')
     }
 
-    setSearch(query.post ? (query.post as string) : (query.category as string))
+    setSearch(query.q as string)
   }, [router])
 
   return (
-    <div className="mt-24 flex flex-col justify-start items-center">
-      <h3 className="font-bold text-lg text-gray-700">
-        Searching for '{search}'
-      </h3>
-      <div className="mt-4 w-96 flex justify-evenly items-center">
-        {[...filters].map((filter: Filter, index) => (
-          <div
-            onClick={() => setFilter(filter)}
-            key={index}
-            className="py-1 px-3 rounded-full border border-gray-200"
-          >
-            <p className="text-xs font-bold uppercase text-gray-700">
-              {filter}
-            </p>
-          </div>
-        ))}
+    <DefaultWrapper>
+      <div className="w-full mt-24 flex flex-col justify-start items-center">
+        <h3 className="font-bold text-lg text-gray-700">
+          Searching for '{search}'
+        </h3>
+        <div className="mt-4 flex justify-start items-center">
+          {[...filters].map((filterOption: Filter, index) => (
+            <div
+              onClick={() => setFilter(filterOption)}
+              key={index}
+              className={`py-1 px-3 rounded-full border cursor-pointer ${
+                filter === filterOption ? 'border-gray-700' : 'border-gray-200'
+              } ${filters.length - 1 !== index && 'mr-4'}`}
+            >
+              <p className="text-xs font-bold uppercase text-gray-700">
+                {filterOption}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="w-full mt-6 flex flex-col justify-start items-center">
+          {loading ? (
+            <p>loading...</p>
+          ) : (
+            <>
+              {data.posts?.length > 0 ? (
+                <>
+                  {[...data.posts].map((post, index) => (
+                    <SearchedPost key={index} post={post} />
+                  ))}
+                </>
+              ) : (
+                <SearchNotFound />
+              )}
+            </>
+          )}
+        </div>
       </div>
-      <div className="mt-6 flex flex-col justify-start items-center">
-        {!loading && data.posts && (
-          <>
-            {[...data.posts].map((post, index) => (
-              <div
-                key={index}
-                className={`w-96 py-4 px-6 rounded-lg border border-gray-200 ${
-                  data.posts.length - 1 !== index && 'mb-4'
-                }`}
-              >
-                <p>Title: {post.title}</p>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
-    </div>
+    </DefaultWrapper>
   )
 }
 
