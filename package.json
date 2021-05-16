@@ -22,7 +22,9 @@
     "next": "10.2.0",
     "next-apollo": "^5.0.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-markdown": "^6.0.2",
+    "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.4",

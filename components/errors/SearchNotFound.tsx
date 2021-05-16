@@ -9,7 +9,6 @@ const SearchNotFound: React.FC<SearchNotFoundProps> = ({}) => {
       <Message
         title="Sorry"
         message="We can't seem to find the post that you're looking for."
-        variant="warning"
       />
     </div>
   )

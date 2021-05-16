@@ -1214,6 +1214,17 @@ export type UpdateUserPayload = {
   user?: Maybe<UsersPermissionsUser>;
 };
 
+export type FindCategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindCategoriesQuery = (
+  { __typename?: 'Query' }
+  & { categories?: Maybe<Array<Maybe<(
+    { __typename?: 'Category' }
+    & CategoryFragment
+  )>>> }
+);
+
 export type CategoryFragment = (
   { __typename?: 'Category' }
   & Pick<Category, 'label' | 'hexColor'>
@@ -1371,6 +1382,40 @@ export const UserFragmentDoc = gql`
   displayName
 }
     `;
+export const FindCategoriesDocument = gql`
+    query FindCategories {
+  categories {
+    ...Category
+  }
+}
+    ${CategoryFragmentDoc}`;
+
+/**
+ * __useFindCategoriesQuery__
+ *
+ * To run a query within a React component, call `useFindCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindCategoriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFindCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<FindCategoriesQuery, FindCategoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindCategoriesQuery, FindCategoriesQueryVariables>(FindCategoriesDocument, options);
+      }
+export function useFindCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindCategoriesQuery, FindCategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindCategoriesQuery, FindCategoriesQueryVariables>(FindCategoriesDocument, options);
+        }
+export type FindCategoriesQueryHookResult = ReturnType<typeof useFindCategoriesQuery>;
+export type FindCategoriesLazyQueryHookResult = ReturnType<typeof useFindCategoriesLazyQuery>;
+export type FindCategoriesQueryResult = Apollo.QueryResult<FindCategoriesQuery, FindCategoriesQueryVariables>;
 export const FindByCategoryDocument = gql`
     query FindByCategory($category: String!) {
   posts(where: {categories: {label: $category}}) {

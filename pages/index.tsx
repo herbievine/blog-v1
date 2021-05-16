@@ -1,5 +1,5 @@
-import Head from 'next/Head'
 import React from 'react'
+import Navigation from '../components/modules/Navigation'
 import withApollo from '../utils/withApollo'
 
 interface IndexProps {}
@@ -7,9 +7,7 @@ interface IndexProps {}
 const Index: React.FC<IndexProps> = ({}) => {
   return (
     <>
-      <Head>
-        <title>Vuter</title>
-      </Head>
+      <Navigation />
       <div>
         <p>Hello!</p>
       </div>
