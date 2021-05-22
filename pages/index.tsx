@@ -5,6 +5,9 @@ import withApollo from '../utils/withApollo'
 interface IndexProps {}
 
 const Index: React.FC<IndexProps> = ({}) => {
+  console.log(process.env.NODE_ENV)
+  console.log(process.env.CIRCLECI)
+
   return (
     <>
       <Navigation />
