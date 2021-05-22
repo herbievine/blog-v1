@@ -64,7 +64,9 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
                 className="text-xs font-bold text-gray-700"
                 style={{
                   color:
-                    processBrightness(post?.categories[index]?.hexColor) > 0.5
+                    parseFloat(
+                      processBrightness(post?.categories[index]?.hexColor)
+                    ) > 0.5
                       ? '#000000'
                       : '#ffffff',
                 }}
