@@ -24,7 +24,7 @@ const hexToRgb = (hex: string): string => {
 const cutHex = (hex: string): string =>
   hex.charAt(0) == '#' ? hex.substring(1, 7) : hex
 
-const processBrightness = (hex: string): number =>
+const processBrightness = (hex: string): string =>
   getLightnessOfRGB(hexToRgb(hex)).toFixed(4)
 
 export default processBrightness
