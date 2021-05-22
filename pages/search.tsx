@@ -7,7 +7,7 @@ import {
   useFindLivePostsByCategoryQuery,
 } from '../generated/graphql'
 import SearchNotFound from '../components/errors/SearchNotFound'
-import SearchedPost from '../components/posts/SearchedPost'
+import SearchedPost, { Post } from '../components/posts/SearchedPost'
 import DefaultWrapper from '../components/layout/DefaultWrapper'
 import Navigation from '../components/modules/Navigation'
 
@@ -78,7 +78,7 @@ const Search: React.FC<SearchProps> = ({}) => {
                   {data?.posts?.length > 0 ? (
                     <>
                       {[...data.posts].map((post, index) => (
-                        <SearchedPost key={index} post={post} />
+                        <SearchedPost key={index} post={post as Post} />
                       ))}
                     </>
                   ) : (

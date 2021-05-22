@@ -3,7 +3,7 @@ import React from 'react'
 import CategoryNotFound from '../../components/errors/CategoryNotFound'
 import DefaultWrapper from '../../components/layout/DefaultWrapper'
 import Navigation from '../../components/modules/Navigation'
-import SearchedPost from '../../components/posts/SearchedPost'
+import SearchedPost, { Post } from '../../components/posts/SearchedPost'
 import { useFindByCategoryQuery } from '../../generated/graphql'
 import withApollo from '../../utils/withApollo'
 
@@ -32,7 +32,7 @@ const Category: React.FC<CategoryProps> = ({}) => {
                 {data.posts?.length > 0 ? (
                   <>
                     {[...data.posts].map((post, index) => (
-                      <SearchedPost key={index} post={post} />
+                      <SearchedPost key={index} post={post as Post} />
                     ))}
                   </>
                 ) : (

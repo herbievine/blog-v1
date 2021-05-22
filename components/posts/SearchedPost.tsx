@@ -3,25 +3,27 @@ import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import processBrightness from '../../utils/processBrightness'
 
-interface SearchedPostProps {
-  post: {
-    title?: string
-    slug?: string
-    content?: string
-    created_at: string
-    categories?: [
-      {
-        label?: string
-        hexColor?: string
-      }
-    ]
-    user?: {
-      id: string
-      username: string
-      email: string
-      displayName: string
+export type Post = {
+  title?: string
+  slug?: string
+  content?: string
+  created_at: string
+  categories?: [
+    {
+      label?: string
+      hexColor?: string
     }
+  ]
+  user?: {
+    id: string
+    username: string
+    email: string
+    displayName: string
   }
+}
+
+interface SearchedPostProps {
+  post: Post
 }
 
 const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
