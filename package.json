@@ -10,8 +10,11 @@
     "build": "next build && next export",
     "start": "next start",
     "type-check": "tsc",
-    "prettier": "prettier -w \"(pages|components|utils)/**/*.(ts|js|tsx|jsx)\"",
-    "gen": "graphql-codegen --config codegen.yml"
+    "prettier": "prettier -w \"(pages|components|utils|cypress)/**/*.(ts|js|tsx|jsx)\"",
+    "gen": "graphql-codegen --config codegen.yml",
+    "test": "start-server-and-test serve http://localhost:4000 test:run",
+    "test:open": "cypress open",
+    "test:run": "cypress run --record --key 9ebae204-0aa4-4244-9ab9-5ffa0b2121e8"
   },
   "dependencies": {
     "@apollo/client": "^3.3.17",
@@ -33,10 +36,10 @@
     "@graphql-codegen/typescript-react-apollo": "2.2.4",
     "@types/react": "^17.0.5",
     "autoprefixer": "^10.2.5",
-    "babel-jest": "^26.6.3",
-    "jest": "^26.6.3",
+    "cypress": "^7.3.0",
     "postcss": "^8.2.15",
     "prettier": "^2.3.0",
+    "start-server-and-test": "^1.12.2",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.2.4"
   }

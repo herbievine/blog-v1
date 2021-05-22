@@ -29,6 +29,7 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
 
   return (
     <div
+      data-cy="post"
       onClick={() => router.push(`/post/${post.slug}`)}
       className="w-full py-4 px-6 rounded-lg shadow-md mb-4 cursor-pointer transform transition hover:scale-105"
     >

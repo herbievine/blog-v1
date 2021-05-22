@@ -106,6 +106,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         )}
         <div>
           <input
+            data-cy="search-bar"
             className="w-44 py-1 px-3 bg-gray-200 rounded-md text-sm font-medium focus:outline-none"
             type="text"
             // value={router.query.q ?? ''}
