@@ -12,7 +12,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
 
   return (
     <div className="h-12 px-4 flex items-center justify-between sticky top-0 z-50">
-      <div className="text-sm uppercase font-bold text-gray-700">
+      <div data-cy="home" className="text-sm uppercase font-bold text-gray-700">
         <Link href={'/'}>Vuter</Link>
       </div>
       <div className="flex items-center justify-end">
@@ -24,12 +24,13 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
 
               return index < 6 ? (
                 <div
+                  data-cy={`category-${category.label}`}
                   key={index}
                   className={`text-sm uppercase font-bold text-gray-700 ${
                     index !== last ? 'mr-6' : null
                   }`}
                 >
-                  <Link href={`/category/${category.label.toLowerCase()}`}>
+                  <Link href={`/category/${category.label}`}>
                     {category.label}
                   </Link>
                 </div>
@@ -75,11 +76,10 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                         {[...data.categories].map((category, index) =>
                           index >= 6 ? (
                             <Menu.Item
+                              data-cy={`category-${category.label}`}
                               key={index}
                               onClick={() =>
-                                router.push(
-                                  `/category/${category.label.toLowerCase()}`
-                                )
+                                router.push(`/category/${category.label}`)
                               }
                             >
                               {({ active }) => (

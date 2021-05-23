@@ -1,0 +1,10 @@
+{
+  "roots": ["__tests__"],
+  "collectCoverageFrom": [
+    "**/*.{js,jsx}",
+    "!**/node_modules/**",
+    "!**/vendor/**"
+  ],
+  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx|ts|tsx)$",
+  "moduleFileExtensions": ["js", "json", "jsx", "ts", "tsx"]
+}
