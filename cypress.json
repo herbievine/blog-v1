@@ -1,4 +1,12 @@
 {
   "baseUrl": "http://localhost:4000",
-  "projectId": "hfp7pi"
+  "projectId": "hfp7pi",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "charts": true,
+    "overwrite": false,
+    "html": false,
+    "json": true,
+    "reportDir": "cypress/report/mochawesome-report"
+  }
 }
