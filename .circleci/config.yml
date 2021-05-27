@@ -1,9 +1,6 @@
 version: 2
 jobs:
-  test:
-    filters:
-      branches:
-        only: staging
+  build:
     docker:
       - image: circleci/node:14.15.4
     working_directory: ~/app
