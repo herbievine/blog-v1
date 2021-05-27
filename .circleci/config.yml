@@ -56,14 +56,8 @@ jobs:
           name: Deploy to main branch
           working_directory: ~/app/clone
           command: |
-            if [[ "${CIRCLE_USERNAME}" = "<account>" && -z "${CIRCLE_PULL_REQUEST}"]]
-            then
-              echo "Committing to GitHub"
-              git commit --allow-empty -am "Automatic commit from CircleCI"
-              git push origin main
-            else
-              echo "Not committing to GitHub"
-            fi
+            git commit --allow-empty -am "Automatic commit from CircleCI"
+            git push origin main
 
 workflows:
   version: 2
