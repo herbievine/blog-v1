@@ -27,6 +27,9 @@ jobs:
       - image: circleci/node:14.15.4
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "<4a:f2:ae:4f:ff:0a:fd:09:75:df:97:c6:20:5f:b4:0e>"
       - restore_cache:
           keys:
             - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
@@ -53,8 +56,14 @@ jobs:
           name: Deploy to main branch
           working_directory: ~/app/clone
           command: |
-            git add .
-            git push -q "$CIRCLE_REPOSITORY_URL" staging:main
+            if [[ "${CIRCLE_USERNAME}" = "<account>" && -z "${CIRCLE_PULL_REQUEST}"]]
+            then
+              echo "Committing to GitHub"
+              git commit --allow-empty -am "Automatic commit from CircleCI"
+              git push origin main
+            else
+              echo "Not committing to GitHub"
+            fi
 
 workflows:
   version: 2
