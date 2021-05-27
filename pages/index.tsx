@@ -22,7 +22,7 @@ const Index: React.FC<IndexProps> = ({}) => {
               ))}
             </div>
           ) : (
-            <p>Loading...</p>
+            <p>Loading... :)</p>
           )}
         </div>
       </div>
