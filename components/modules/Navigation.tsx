@@ -1,53 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import { useFindCategoriesQuery } from '../../generated/graphql'
+import { ThemeContext } from '../contexts/ThemeContext'
+import { SunIcon, MoonIcon } from '@heroicons/react/solid'
 
 interface NavigationProps {}
 
 const Navigation: React.FC<NavigationProps> = ({}) => {
+  const { theme, setTheme } = useContext(ThemeContext)
   const router = useRouter()
   const { data, loading } = useFindCategoriesQuery()
 
   return (
-    <div className="h-12 px-4 flex items-center justify-between sticky top-0 z-50">
-      <div data-cy="home" className="text-sm uppercase font-bold text-gray-700">
-        <Link href={'/'}>Vuter</Link>
+    <div className="h-20 w-5/6 md:w-1/2 mx-auto flex items-center justify-between sticky top-0 z-50">
+      <div className="font-bold text-gray-800 dark:text-gray-100">
+        <Link href={'/'}>Herbie Vine</Link>
       </div>
       <div className="flex items-center justify-end">
-        <div className="mr-4 flex items-center">
-          {!loading &&
-            [...data?.categories].map((category, index) => {
-              const last =
-                data?.categories.length < 6 ? data?.categories.length - 1 : 5
-
-              return index < 6 ? (
-                <div
-                  data-cy={`category-${category.label}`}
-                  key={index}
-                  className={`text-sm uppercase font-bold text-gray-700 ${
-                    index !== last ? 'mr-6' : null
-                  }`}
-                >
-                  <Link href={`/category/${category.label}`}>
-                    {category.label}
-                  </Link>
-                </div>
-              ) : null
-            })}
+        <div className="font-bold text-gray-800 dark:text-gray-100 mr-2 md:mr-6">
+          <Link href={'/latest'}>Latest</Link>
         </div>
-        {!loading && data?.categories.length > 6 && (
-          <div className="relative inline-block text-left mr-4">
+        {!loading && data?.categories?.length > 0 && (
+          <div className="relative inline-block text-left mr-2 md:mr-6">
             <Menu>
               {({ open }) => (
                 <>
                   <Menu.Button className="inline-flex justify-center w-full px-3 py-1 leading-5 transition duration-150 ease-in-out focus:outline-none">
-                    <span className="text-sm uppercase font-bold text-gray-700">
-                      More
+                    <span className="font-bold text-gray-800 dark:text-gray-100">
+                      Categories
                     </span>
                     <svg
-                      className="w-5 h-5 ml-2 -mr-1 text-gray-700"
+                      className="w-5 h-5 ml-1 -mr-1 text-gray-800 dark:text-gray-100"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -70,32 +55,29 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                   >
                     <Menu.Items
                       static
-                      className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-md outline-none"
+                      className="absolute right-0 w-56 mt-2 origin-top-right bg-white dark:bg-gray-800 divide-y divide-gray-100 rounded-md shadow-md outline-none"
                     >
                       <div className="py-1">
-                        {[...data.categories].map((category, index) =>
-                          index >= 6 ? (
-                            <Menu.Item
-                              data-cy={`category-${category.label}`}
-                              key={index}
-                              onClick={() =>
-                                router.push(`/category/${category.label}`)
-                              }
-                            >
-                              {({ active }) => (
-                                <div
-                                  className={`${
-                                    active
-                                      ? 'bg-gray-100 text-gray-900'
-                                      : 'text-gray-700'
-                                  } flex justify-between w-full px-4 py-2 text-sm uppercase font-bold leading-5 text-left cursor-pointer`}
-                                >
-                                  <p>{category.label}</p>
-                                </div>
-                              )}
-                            </Menu.Item>
-                          ) : null
-                        )}
+                        {[...data.categories].map((category, index) => (
+                          <Menu.Item
+                            key={index}
+                            onClick={() =>
+                              router.push(`/category/${category.label}`)
+                            }
+                          >
+                            {({ active }) => (
+                              <div
+                                className={`${
+                                  active
+                                    ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                                    : 'text-gray-700 dark:text-gray-100'
+                                } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
+                              >
+                                <p>{category.label}</p>
+                              </div>
+                            )}
+                          </Menu.Item>
+                        ))}
                       </div>
                     </Menu.Items>
                   </Transition>
@@ -104,17 +86,16 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
             </Menu>
           </div>
         )}
-        <div>
-          <input
-            data-cy="search-bar"
-            className="w-44 py-1 px-3 bg-gray-200 rounded-md text-sm font-medium focus:outline-none"
-            type="text"
-            // value={router.query.q ?? ''}
-            placeholder="Search..."
-            onChange={(e) =>
-              router.replace(`/search?q=${e.target.value.toLowerCase()}`)
-            }
-          />
+        <div
+          onClick={() =>
+            setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
+          }
+        >
+          {theme === 'dark' ? (
+            <SunIcon className="mr-2 w-5 text-white" />
+          ) : (
+            <MoonIcon className="mr-2 w-5 text-gray-800" />
+          )}
         </div>
       </div>
     </div>
