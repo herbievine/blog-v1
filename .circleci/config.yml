@@ -27,6 +27,9 @@ jobs:
       - image: circleci/node:14.15.4
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "<4a:f2:ae:4f:ff:0a:fd:09:75:df:97:c6:20:5f:b4:0e>"
       - restore_cache:
           keys:
             - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
@@ -47,15 +50,14 @@ jobs:
             git config --global user.name "herbievine"
       - run:
           name: Clone staging branch
-          working_directory: ~/workdir
-          command: git clone --depth 1 https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git staging
+          working_directory: ~/app
+          command: git clone -b staging --depth 1 "$CIRCLE_REPOSITORY_URL" clone
       - run:
           name: Deploy to main branch
-          working_directory: ~/workdir/staging
+          working_directory: ~/app/clone
           command: |
-            git add .
-            git commit -m "Update via CircleCI"
-            git push -q https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git main
+            git commit --allow-empty -am "Automatic commit from CircleCI"
+            git push origin staging:main
 
 workflows:
   version: 2
