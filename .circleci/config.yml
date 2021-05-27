@@ -47,11 +47,11 @@ jobs:
             git config --global user.name "herbievine"
       - run:
           name: Clone staging branch
-          working_directory: ~/workdir
-          command: git clone --depth 1 https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git staging
+          working_directory: ~/app
+          command: git clone -b staging --depth 1 https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git clone
       - run:
           name: Deploy to main branch
-          working_directory: ~/workdir/staging
+          working_directory: ~/app/clone
           command: |
             git add .
             git commit -m "Update via CircleCI"
