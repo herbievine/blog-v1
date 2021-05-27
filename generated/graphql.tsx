@@ -1260,6 +1260,24 @@ export type FindByCategoryQuery = (
   )>>> }
 );
 
+export type FindLatestQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindLatestQuery = (
+  { __typename?: 'Query' }
+  & { posts?: Maybe<Array<Maybe<(
+    { __typename?: 'Posts' }
+    & { categories?: Maybe<Array<Maybe<(
+      { __typename?: 'Category' }
+      & CategoryFragment
+    )>>>, user?: Maybe<(
+      { __typename?: 'UsersPermissionsUser' }
+      & UserFragment
+    )> }
+    & PostFragment
+  )>>> }
+);
+
 export type FindOneBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -1459,6 +1477,48 @@ export function useFindByCategoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type FindByCategoryQueryHookResult = ReturnType<typeof useFindByCategoryQuery>;
 export type FindByCategoryLazyQueryHookResult = ReturnType<typeof useFindByCategoryLazyQuery>;
 export type FindByCategoryQueryResult = Apollo.QueryResult<FindByCategoryQuery, FindByCategoryQueryVariables>;
+export const FindLatestDocument = gql`
+    query FindLatest {
+  posts(limit: 10, sort: "created_at:desc") {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}
+    ${PostFragmentDoc}
+${CategoryFragmentDoc}
+${UserFragmentDoc}`;
+
+/**
+ * __useFindLatestQuery__
+ *
+ * To run a query within a React component, call `useFindLatestQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindLatestQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindLatestQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFindLatestQuery(baseOptions?: Apollo.QueryHookOptions<FindLatestQuery, FindLatestQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindLatestQuery, FindLatestQueryVariables>(FindLatestDocument, options);
+      }
+export function useFindLatestLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindLatestQuery, FindLatestQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindLatestQuery, FindLatestQueryVariables>(FindLatestDocument, options);
+        }
+export type FindLatestQueryHookResult = ReturnType<typeof useFindLatestQuery>;
+export type FindLatestLazyQueryHookResult = ReturnType<typeof useFindLatestLazyQuery>;
+export type FindLatestQueryResult = Apollo.QueryResult<FindLatestQuery, FindLatestQueryVariables>;
 export const FindOneBySlugDocument = gql`
     query FindOneBySlug($slug: String!) {
   posts(where: {slug: $slug}) {

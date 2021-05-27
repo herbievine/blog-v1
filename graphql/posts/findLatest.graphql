@@ -1,0 +1,11 @@
+query FindLatest {
+  posts(limit: 10, sort: "created_at:desc") {
+    ...Post
+    categories {
+      ...Category
+    }
+    user {
+      ...User
+    }
+  }
+}
