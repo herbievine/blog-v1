@@ -14,12 +14,12 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   const { data, loading } = useFindCategoriesQuery()
 
   return (
-    <div className="h-20 w-5/6 md:w-1/2 mx-auto flex items-center justify-between sticky top-0 z-50">
-      <div className="font-bold text-gray-800 dark:text-gray-100">
+    <div className="h-20 w-5/6 mx-auto flex items-center justify-between sticky top-0 z-50">
+      <div>
         <Link href={'/'}>Herbie Vine</Link>
       </div>
       <div className="flex items-center justify-end">
-        <div className="font-bold text-gray-800 dark:text-gray-100 mr-2 md:mr-6">
+        <div className=" mr-2 md:mr-6">
           <Link href={'/latest'}>Latest</Link>
         </div>
         {!loading && data?.categories?.length > 0 && (
@@ -28,11 +28,9 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
               {({ open }) => (
                 <>
                   <Menu.Button className="inline-flex justify-center w-full px-3 py-1 leading-5 transition duration-150 ease-in-out focus:outline-none">
-                    <span className="font-bold text-gray-800 dark:text-gray-100">
-                      Categories
-                    </span>
+                    <p>Categories</p>
                     <svg
-                      className="w-5 h-5 ml-1 -mr-1 text-gray-800 dark:text-gray-100"
+                      className="w-5 h-5 ml-1 -mr-1"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -57,7 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                       static
                       className="absolute right-0 w-56 mt-2 origin-top-right bg-white dark:bg-gray-800 divide-y divide-gray-100 rounded-md shadow-md outline-none"
                     >
-                      <div className="py-1">
+                      <div className="py-2">
                         {[...data.categories].map((category, index) => (
                           <Menu.Item
                             key={index}
@@ -87,6 +85,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
           </div>
         )}
         <div
+          className="cursor-pointer"
           onClick={() =>
             setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
           }

@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { ThemeContext } from '../components/contexts/ThemeContext'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark')
 
   return (
     <>
