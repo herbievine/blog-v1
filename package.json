@@ -12,12 +12,8 @@
     "type-check": "tsc",
     "prettier": "prettier -w \"(__tests__|pages|components|utils|cypress)/**/*.(ts|js|tsx|jsx)\"",
     "gen": "graphql-codegen --config codegen.yml",
-    "cy:open": "cypress open",
-    "cy:report": "npx mochawesome-merge cypress/report/mochawesome-report/*.json > cypress/report/output.json && npx marge cypress/report/output.json --reportDir ./ --inline",
-    "test": "start-server-and-test serve http://localhost:4000 test:all",
-    "test:all": "yarn test:jest && yarn test:cy",
-    "test:jest": "jest --config ./jest.config.json --coverage",
-    "test:cy": "cypress run --record --key 9ebae204-0aa4-4244-9ab9-5ffa0b2121e8 --reporter mochawesome"
+    "test": "test:jest",
+    "test:jest": "jest --config ./jest.config.json"
   },
   "dependencies": {
     "@apollo/client": "^3.3.17",
