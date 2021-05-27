@@ -1,6 +1,7 @@
-version: 2
+version: "2.1"
+
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:14.15.4
     working_directory: ~/app
@@ -21,3 +22,46 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
+  deploy:
+    docker:
+      - image: circleci/node:14.15.4
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v2-deps-{{ .Branch }}
+            - v2-deps
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.cache
+      - run:
+          name: Deploy to main branch
+          command: |
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "vineherbie@gmail.com"
+            git config user.name "herbievine"
+            git add .
+            git commit -m "Update via CircleCI"
+            git push -q https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git main
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test:
+          filters:
+            branches:
+              only: staging
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: staging
+      
