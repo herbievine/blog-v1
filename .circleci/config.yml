@@ -22,42 +22,42 @@ jobs:
       - run:
           name: Run tests
           command: yarn test
-  deploy:
-    docker:
-      - image: circleci/node:14.15.4
-    steps:
-      - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "<4a:f2:ae:4f:ff:0a:fd:09:75:df:97:c6:20:5f:b4:0e>"
-      - restore_cache:
-          keys:
-            - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
-            - v2-deps-{{ .Branch }}
-            - v2-deps
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          key: v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.cache
-      - run: 
-          name: Login to GitHub
-          command: |
-            git config credential.helper 'cache --timeout=120'
-            git config --global user.email "vineherbie@gmail.com"
-            git config --global user.name "herbievine"
-      - run:
-          name: Clone staging branch
-          working_directory: ~/app
-          command: git clone -b staging --depth 1 "$CIRCLE_REPOSITORY_URL" clone
-      - run:
-          name: Deploy to main branch
-          working_directory: ~/app/clone
-          command: |
-            git commit --allow-empty -am "Automatic commit from CircleCI"
-            git push origin staging:production
+  # deploy:
+  #   docker:
+  #     - image: circleci/node:14.15.4
+  #   steps:
+  #     - checkout
+  #     - add_ssh_keys:
+  #         fingerprints:
+  #           - "<4a:f2:ae:4f:ff:0a:fd:09:75:df:97:c6:20:5f:b4:0e>"
+  #     - restore_cache:
+  #         keys:
+  #           - v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
+  #           - v2-deps-{{ .Branch }}
+  #           - v2-deps
+  #     - run:
+  #         name: Install Dependencies
+  #         command: yarn install --frozen-lockfile
+  #     - save_cache:
+  #         key: v2-deps-{{ .Branch }}-{{ checksum "package.json" }}
+  #         paths:
+  #           - ~/.cache
+  #     - run: 
+  #         name: Login to GitHub
+  #         command: |
+  #           git config credential.helper 'cache --timeout=120'
+  #           git config --global user.email "vineherbie@gmail.com"
+  #           git config --global user.name "herbievine"
+  #     - run:
+  #         name: Clone staging branch
+  #         working_directory: ~/app
+  #         command: git clone -b staging --depth 1 "$CIRCLE_REPOSITORY_URL" clone
+  #     - run:
+  #         name: Deploy to main branch
+  #         working_directory: ~/app/clone
+  #         command: |
+  #           git commit --allow-empty -am "Automatic commit from CircleCI"
+  #           git push origin staging:production
 
 workflows:
   version: 2
@@ -67,10 +67,10 @@ workflows:
           filters:
             branches:
               only: staging
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: staging
+      # - deploy:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: staging
       
