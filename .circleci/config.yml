@@ -43,8 +43,8 @@ jobs:
           name: Login to GitHub
           command: |
             git config credential.helper 'cache --timeout=120'
-            git config user.email "vineherbie@gmail.com"
-            git config user.name "herbievine"
+            git config --global user.email "vineherbie@gmail.com"
+            git config --global user.name "herbievine"
       - run:
           name: Clone staging branch
           working_directory: ~/workdir
