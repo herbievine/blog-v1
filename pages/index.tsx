@@ -8,6 +8,7 @@ interface IndexProps {}
 
 const Index: React.FC<IndexProps> = ({}) => {
   const { data, loading } = useFindLatestQuery()
+  console.log('test')
 
   return (
     <>
