@@ -57,7 +57,7 @@ jobs:
           working_directory: ~/app/clone
           command: |
             git commit --allow-empty -am "Automatic commit from CircleCI"
-            git push origin main
+            git push origin staging:main
 
 workflows:
   version: 2
