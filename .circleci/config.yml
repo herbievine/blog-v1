@@ -48,13 +48,13 @@ jobs:
       - run:
           name: Clone staging branch
           working_directory: ~/app
-          command: git clone -b staging --depth 1 https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git clone
+          command: git clone -b staging --depth 1 "$CIRCLE_REPOSITORY_URL" clone
       - run:
           name: Deploy to main branch
           working_directory: ~/app/clone
           command: |
             git add .
-            git push -q https://${CONTEXT_GITHUB_PERSONAL_TOKEN}@github.com/herbievine/vuter-web.git staging:main
+            git push -q "$CIRCLE_REPOSITORY_URL" staging:main
 
 workflows:
   version: 2
