@@ -22,7 +22,7 @@ const Post: React.FC<PostProps> = ({}) => {
       <DefaultWrapper>
         {!loading && data.posts[0] ? (
           <div className="w-full mt-24 flex flex-col justify-start items-center">
-            <h3 className="font-bold text-lg text-gray-700 capitalize">
+            <h3 className=" text-lg text-gray-700 capitalize">
               {data.posts[0].title}
             </h3>
 

@@ -49,9 +49,7 @@ const Search: React.FC<SearchProps> = ({}) => {
       <DefaultWrapper>
         {search && (
           <div className="w-full mt-24 flex flex-col justify-start items-center">
-            <h3 className="font-bold text-lg text-gray-700">
-              Searching for '{search}'
-            </h3>
+            <h3 className=" text-lg text-gray-700">Searching for '{search}'</h3>
             <div className="mt-4 flex justify-start items-center">
               {[...filters].map((filterOption: Filter, index) => (
                 <div
@@ -64,7 +62,7 @@ const Search: React.FC<SearchProps> = ({}) => {
                       : 'border-gray-200'
                   } ${filters.length - 1 !== index && 'mr-4'}`}
                 >
-                  <p className="text-xs font-bold uppercase text-gray-700">
+                  <p className="text-xs uppercase text-gray-700">
                     {filterOption}
                   </p>
                 </div>

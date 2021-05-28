@@ -8,6 +8,24 @@
   font-family: 'Poppins', Helvetica, 'Segoe UI', sans-serif;
 }
 
+@layer base {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  svg {
+    @apply text-gray-800 dark:text-gray-100 font-bold;
+  }
+
+  span {
+    @apply text-gray-500;
+  }
+}
+
 p,
 h1,
 h2,
