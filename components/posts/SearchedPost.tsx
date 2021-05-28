@@ -31,21 +31,16 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
 
   return (
     <div
-      data-cy="post"
       onClick={() => router.push(`/post/${post.slug}`)}
-      className="w-full py-4 px-6 rounded-lg shadow-md mb-4 cursor-pointer transform transition hover:scale-105"
+      className="w-full py-4 px-6 rounded-lg flex flex-col dark:bg-gray-800 shadow-md mb-4 cursor-pointer transform transition hover:scale-105"
     >
-      <div className="flex justify-between items-baseline">
-        <h4 className="text-lg font-bold text-gray-700">{post.title}</h4>
-        <p className="text-xs font-medium text-gray-500">
-          Published on {dayjs(post.created_at).format('DD/MM/YYYY @ HH:mm')} by{' '}
-          {post.user.displayName}
-        </p>
-      </div>
+      <span className="text-xs font-medium">
+        {post.user.displayName} ·{' '}
+        {dayjs(post.created_at).format('DD/MM/YYYY @ HH:mm')}
+      </span>
+      <h4 className="mt-2 text-lg">{post.title}</h4>
       <div className="mt-2">
-        <p className="text-sm font-medium text-gray-700">
-          {post.content.slice(0, 300)}...
-        </p>
+        <p className="text-sm font-medium">{post.content.slice(0, 300)}...</p>
       </div>
       <div className="mt-2 w-full flex justify-start">
         {post.categories &&
@@ -61,7 +56,7 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
               }}
             >
               <p
-                className="text-xs font-bold text-gray-700"
+                className="text-xs"
                 style={{
                   color:
                     parseFloat(

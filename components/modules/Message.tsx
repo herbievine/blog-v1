@@ -41,7 +41,7 @@ const Message: React.FC<MessageProps> = ({ variant, title, message }) => {
         {title && (
           <div className="mb-2 flex items-center justify-start">
             {icon}
-            <p className="font-bold text-color-700">{title}</p>
+            <p className=" text-color-700">{title}</p>
           </div>
         )}
         <p className="font-medium text-sm text-color-700">{message}</p>

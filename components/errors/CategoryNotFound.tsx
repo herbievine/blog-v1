@@ -8,7 +8,7 @@ const CategoryNotFound: React.FC<CategoryNotFoundProps> = ({}) => {
   const router = useRouter()
 
   return (
-    <div className="">
+    <div>
       <Message
         title="Sorry"
         message="We can't seem to find the category that you're looking for."
