@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Banner from '../components/modules/Banner'
+import Footer from '../components/modules/Footer'
 import { useState } from 'react'
 import { ThemeContext } from '../components/contexts/ThemeContext'
 
@@ -16,8 +17,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Banner />
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <div className={theme}>
-          <div className="bg-white dark:bg-gray-900">
+          <div className="h-full bg-white dark:bg-gray-900">
             <Component {...pageProps} />
+            <Footer />
           </div>
         </div>
       </ThemeContext.Provider>

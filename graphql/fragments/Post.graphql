@@ -1,6 +1,7 @@
 fragment Post on Posts {
   title
   slug
+  views
   content
   created_at
 }

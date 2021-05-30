@@ -171,7 +171,7 @@ export type LocaleInput = {
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_At | CategoryConnectionUpdated_At | CategoryConnectionLabel | CategoryConnectionHexColor | CategoryConnectionPublished_At | CreateCategoryPayload | UpdateCategoryPayload | DeleteCategoryPayload | Posts | PostsConnection | PostsAggregator | PostsGroupBy | PostsConnectionId | PostsConnectionCreated_At | PostsConnectionUpdated_At | PostsConnectionTitle | PostsConnectionSlug | PostsConnectionContent | PostsConnectionUser | PostsConnectionPublished_At | CreatePostPayload | UpdatePostPayload | DeletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
+export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Category | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnectionId | CategoryConnectionCreated_At | CategoryConnectionUpdated_At | CategoryConnectionLabel | CategoryConnectionHexColor | CategoryConnectionPublished_At | CreateCategoryPayload | UpdateCategoryPayload | DeleteCategoryPayload | Posts | PostsConnection | PostsAggregator | PostsAggregatorSum | PostsAggregatorAvg | PostsAggregatorMin | PostsAggregatorMax | PostsGroupBy | PostsConnectionId | PostsConnectionCreated_At | PostsConnectionUpdated_At | PostsConnectionTitle | PostsConnectionSlug | PostsConnectionContent | PostsConnectionUser | PostsConnectionViews | PostsConnectionPublished_At | CreatePostPayload | UpdatePostPayload | DeletePostPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_At | UploadFileConnectionUpdated_At | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_At | UsersPermissionsUserConnectionUpdated_At | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionDisplayName | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -328,6 +328,7 @@ export type PostInput = {
   content: Scalars['String'];
   user?: Maybe<Scalars['ID']>;
   categories?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  views?: Maybe<Scalars['Int']>;
   published_at?: Maybe<Scalars['DateTime']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
@@ -342,6 +343,7 @@ export type Posts = {
   slug: Scalars['String'];
   content: Scalars['String'];
   user?: Maybe<UsersPermissionsUser>;
+  views?: Maybe<Scalars['Int']>;
   published_at?: Maybe<Scalars['DateTime']>;
   categories?: Maybe<Array<Maybe<Category>>>;
 };
@@ -358,6 +360,30 @@ export type PostsAggregator = {
   __typename?: 'PostsAggregator';
   count?: Maybe<Scalars['Int']>;
   totalCount?: Maybe<Scalars['Int']>;
+  sum?: Maybe<PostsAggregatorSum>;
+  avg?: Maybe<PostsAggregatorAvg>;
+  min?: Maybe<PostsAggregatorMin>;
+  max?: Maybe<PostsAggregatorMax>;
+};
+
+export type PostsAggregatorAvg = {
+  __typename?: 'PostsAggregatorAvg';
+  views?: Maybe<Scalars['Float']>;
+};
+
+export type PostsAggregatorMax = {
+  __typename?: 'PostsAggregatorMax';
+  views?: Maybe<Scalars['Float']>;
+};
+
+export type PostsAggregatorMin = {
+  __typename?: 'PostsAggregatorMin';
+  views?: Maybe<Scalars['Float']>;
+};
+
+export type PostsAggregatorSum = {
+  __typename?: 'PostsAggregatorSum';
+  views?: Maybe<Scalars['Float']>;
 };
 
 export type PostsConnection = {
@@ -415,6 +441,12 @@ export type PostsConnectionUser = {
   connection?: Maybe<PostsConnection>;
 };
 
+export type PostsConnectionViews = {
+  __typename?: 'PostsConnectionViews';
+  key?: Maybe<Scalars['Int']>;
+  connection?: Maybe<PostsConnection>;
+};
+
 export type PostsGroupBy = {
   __typename?: 'PostsGroupBy';
   id?: Maybe<Array<Maybe<PostsConnectionId>>>;
@@ -424,6 +456,7 @@ export type PostsGroupBy = {
   slug?: Maybe<Array<Maybe<PostsConnectionSlug>>>;
   content?: Maybe<Array<Maybe<PostsConnectionContent>>>;
   user?: Maybe<Array<Maybe<PostsConnectionUser>>>;
+  views?: Maybe<Array<Maybe<PostsConnectionViews>>>;
   published_at?: Maybe<Array<Maybe<PostsConnectionPublished_At>>>;
 };
 
@@ -1143,6 +1176,7 @@ export type EditPostInput = {
   content?: Maybe<Scalars['String']>;
   user?: Maybe<Scalars['ID']>;
   categories?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  views?: Maybe<Scalars['Int']>;
   published_at?: Maybe<Scalars['DateTime']>;
   created_by?: Maybe<Scalars['ID']>;
   updated_by?: Maybe<Scalars['ID']>;
@@ -1232,7 +1266,7 @@ export type CategoryFragment = (
 
 export type PostFragment = (
   { __typename?: 'Posts' }
-  & Pick<Posts, 'title' | 'slug' | 'content' | 'created_at'>
+  & Pick<Posts, 'title' | 'slug' | 'views' | 'content' | 'created_at'>
 );
 
 export type UserFragment = (
@@ -1318,6 +1352,17 @@ export type FindOneByTitleQuery = (
   )>>> }
 );
 
+export type FindPopularQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindPopularQuery = (
+  { __typename?: 'Query' }
+  & { posts?: Maybe<Array<Maybe<(
+    { __typename?: 'Posts' }
+    & PostFragment
+  )>>> }
+);
+
 export type FindLivePostsByCategoryQueryVariables = Exact<{
   category: Scalars['String'];
 }>;
@@ -1388,6 +1433,7 @@ export const PostFragmentDoc = gql`
     fragment Post on Posts {
   title
   slug
+  views
   content
   created_at
 }
@@ -1605,6 +1651,40 @@ export function useFindOneByTitleLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type FindOneByTitleQueryHookResult = ReturnType<typeof useFindOneByTitleQuery>;
 export type FindOneByTitleLazyQueryHookResult = ReturnType<typeof useFindOneByTitleLazyQuery>;
 export type FindOneByTitleQueryResult = Apollo.QueryResult<FindOneByTitleQuery, FindOneByTitleQueryVariables>;
+export const FindPopularDocument = gql`
+    query FindPopular {
+  posts(limit: 5, sort: "views:desc") {
+    ...Post
+  }
+}
+    ${PostFragmentDoc}`;
+
+/**
+ * __useFindPopularQuery__
+ *
+ * To run a query within a React component, call `useFindPopularQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFindPopularQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFindPopularQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useFindPopularQuery(baseOptions?: Apollo.QueryHookOptions<FindPopularQuery, FindPopularQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FindPopularQuery, FindPopularQueryVariables>(FindPopularDocument, options);
+      }
+export function useFindPopularLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindPopularQuery, FindPopularQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FindPopularQuery, FindPopularQueryVariables>(FindPopularDocument, options);
+        }
+export type FindPopularQueryHookResult = ReturnType<typeof useFindPopularQuery>;
+export type FindPopularLazyQueryHookResult = ReturnType<typeof useFindPopularLazyQuery>;
+export type FindPopularQueryResult = Apollo.QueryResult<FindPopularQuery, FindPopularQueryVariables>;
 export const FindLivePostsByCategoryDocument = gql`
     query FindLivePostsByCategory($category: String!) {
   posts(where: {categories: {label_contains: $category}}) {
