@@ -1,0 +1,5 @@
+query FindPopular {
+  posts(limit: 5, sort: "views:desc") {
+    ...Post
+  }
+}

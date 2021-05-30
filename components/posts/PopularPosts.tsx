@@ -1,14 +1,15 @@
+import { ArrowRightIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { useFindLatestQuery } from '../../generated/graphql'
+import { useFindPopularQuery } from '../../generated/graphql'
 
 interface PopularPostsProps {
   className?: string
 }
 
 const PopularPosts: React.FC<PopularPostsProps> = ({ className }) => {
-  const { data, loading } = useFindLatestQuery()
+  const { data, loading } = useFindPopularQuery()
   const router = useRouter()
 
   return (
@@ -23,9 +24,14 @@ const PopularPosts: React.FC<PopularPostsProps> = ({ className }) => {
             {[...data.posts].map((post, index) => (
               <div
                 key={index}
-                className={index !== data.posts.length - 1 && 'mb-2'}
+                className={`text-sm flex items-center cursor-pointer transform transition hover:scale-105 ${
+                  index !== data.posts.length - 1 && 'mb-2'
+                }`}
               >
-                <Link href={`/post/${post.slug}`}>{post.title}</Link>
+                <Link href={`/post/${post.slug}`}>
+                  {`${post.title} (${post.views} views)`}
+                </Link>
+                <ArrowRightIcon className="ml-2 w-4" />
               </div>
             ))}
           </>

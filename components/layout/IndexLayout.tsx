@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useScreenType } from '../../hooks/useScreenType'
-import PopularPosts from '../modules/PopularPosts'
+import PopularPosts from '../posts/PopularPosts'
 import TopCategories from '../modules/TopCategories'
 import ListPosts from '../posts/ListPosts'
 
@@ -8,7 +8,6 @@ interface IndexLayoutProps {}
 
 const IndexLayout: React.FC<IndexLayoutProps> = ({}) => {
   const cols = useScreenType()
-  console.log(cols)
 
   return cols === '2-cols' ? (
     <div className="w-full flex items-start">

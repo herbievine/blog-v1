@@ -17,8 +17,8 @@ const ListPosts: React.FC<ListPostsProps> = ({ className }) => {
       <h1 className="text-xl">Recently published</h1>
       {!loading && data?.posts?.length > 0 ? (
         <div className="mt-6 w-full">
-          {[...data.posts].map((post) => (
-            <SearchedPost post={post as Post} />
+          {[...data.posts].map((post, index) => (
+            <SearchedPost key={index} post={post as Post} />
           ))}
         </div>
       ) : (
