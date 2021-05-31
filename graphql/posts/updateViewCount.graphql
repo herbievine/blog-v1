@@ -1,0 +1,7 @@
+mutation IncrementView($id: ID!, $views: Int!) {
+  updatePost(input: { where: { id: $id }, data: { views: $views } }) {
+    post {
+      ...Post
+    }
+  }
+}

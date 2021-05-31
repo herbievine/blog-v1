@@ -1,4 +1,5 @@
 fragment Post on Posts {
+  id
   title
   slug
   views

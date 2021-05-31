@@ -11,4 +11,6 @@ export const useScreenType = () => {
   if (is1Cols) {
     return '1-cols'
   }
+
+  return 'fullscreen'
 }

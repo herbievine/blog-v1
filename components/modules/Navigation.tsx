@@ -14,12 +14,12 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   const { data, loading } = useFindCategoriesQuery()
 
   return (
-    <div className="h-20 w-5/6 bg-white dark:bg-gray-900 mx-auto flex items-center justify-between sticky top-0 z-50">
+    <div className="text-sm h-20 w-5/6 bg-white dark:bg-gray-900 mx-auto flex items-center justify-between sticky top-0 z-50">
       <div>
         <Link href={'/'}>Herbie Vine</Link>
       </div>
       <div className="flex items-center justify-end">
-        <div className=" mr-2 md:mr-6">
+        <div className="mr-2 md:mr-6">
           <Link href={'/latest'}>Latest</Link>
         </div>
         {!loading && data?.categories?.length > 0 && (
