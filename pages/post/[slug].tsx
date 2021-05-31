@@ -1,10 +1,13 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import PostNotFound from '../../components/errors/PostNotFound'
 import DefaultWrapper from '../../components/layout/DefaultWrapper'
 import Navigation from '../../components/modules/Navigation'
-import { useFindOneBySlugQuery } from '../../generated/graphql'
+import {
+  useFindOneBySlugQuery,
+  useIncrementViewMutation,
+} from '../../generated/graphql'
 import withApollo from '../../utils/withApollo'
 import gfm from 'remark-gfm'
 
@@ -15,14 +18,24 @@ const Post: React.FC<PostProps> = ({}) => {
   const { data, loading } = useFindOneBySlugQuery({
     variables: { slug: router.query.slug as string },
   })
+  const [incrementViews] = useIncrementViewMutation()
+
+  useEffect(() => {
+    incrementViews({
+      variables: {
+        id: data?.posts[0]?.id,
+        views: data?.posts[0]?.views + 1,
+      },
+    })
+  }, [loading])
 
   return (
     <>
       <Navigation />
       <DefaultWrapper>
-        {!loading && data.posts[0] ? (
+        {!loading && data?.posts[0] ? (
           <div className="w-full mt-24 flex flex-col justify-start items-center">
-            <h3 className=" text-lg text-gray-700 capitalize">
+            <h3 className="text-lg text-gray-700 capitalize">
               {data.posts[0].title}
             </h3>
 
