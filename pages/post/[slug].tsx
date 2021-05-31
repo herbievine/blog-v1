@@ -21,12 +21,14 @@ const Post: React.FC<PostProps> = ({}) => {
   const [incrementViews] = useIncrementViewMutation()
 
   useEffect(() => {
-    incrementViews({
-      variables: {
-        id: data?.posts[0]?.id,
-        views: data?.posts[0]?.views + 1,
-      },
-    })
+    if (!loading) {
+      incrementViews({
+        variables: {
+          id: data?.posts[0]?.id,
+          views: data?.posts[0]?.views + 1,
+        },
+      })
+    }
   }, [loading])
 
   return (
