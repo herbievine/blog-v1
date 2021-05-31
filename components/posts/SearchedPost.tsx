@@ -4,9 +4,11 @@ import { useRouter } from 'next/router'
 import processBrightness from '../../utils/processBrightness'
 
 export type Post = {
+  id: string
   title?: string
   slug?: string
   content?: string
+  views?: number
   created_at: string
   categories?: [
     {
