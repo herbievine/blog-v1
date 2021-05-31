@@ -11,9 +11,7 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({}) => {
 
   let tree
 
-  if (cols === '1-cols') {
-    tree = <ListPosts className="w-full" />
-  } else {
+  if (cols === '2-cols') {
     tree = (
       <div className="w-full flex justify-between items-start">
         <ListPosts className="w-4/6" />
@@ -23,6 +21,8 @@ const IndexLayout: React.FC<IndexLayoutProps> = ({}) => {
         </div>
       </div>
     )
+  } else {
+    tree = <ListPosts className="w-full" />
   }
 
   return tree
