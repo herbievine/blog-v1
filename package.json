@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "serve": "next -p 4000",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "type-check": "tsc",
     "prettier": "prettier -w \"(__tests__|pages|components|utils|cypress)/**/*.(ts|js|tsx|jsx)\"",
