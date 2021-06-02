@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useFindCategoriesQuery } from '../../generated/graphql'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { SunIcon, MoonIcon } from '@heroicons/react/solid'
-import useTranslation from 'next-translate/useTranslation'
+import { useTranslation } from 'next-i18next'
 
 interface NavigationProps {}
 
@@ -13,7 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   const { theme, setTheme } = useContext(ThemeContext)
   const router = useRouter()
   const { data, loading } = useFindCategoriesQuery()
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   return (
     <div className="w-full flex justify-center bg-white dark:bg-gray-900 sticky top-0 z-50">
@@ -23,7 +23,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         </div>
         <div className="flex items-center justify-end">
           <div className="mr-2 md:mr-6">
-            <Link href={'/latest'}>{t('common:nav:latest')}</Link>
+            <Link href={'/latest'}>{t('latest')}</Link>
           </div>
           {!loading && data?.categories?.length > 0 && (
             <div className="relative inline-block text-left mr-2 md:mr-6">
@@ -31,7 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                 {({ open }) => (
                   <>
                     <Menu.Button className="inline-flex justify-center w-full px-3 py-1 leading-5 transition duration-150 ease-in-out focus:outline-none">
-                      <p>{t('common:nav:categories')}</p>
+                      <p>{t('categories')}</p>
                       <svg
                         className="w-5 h-5 ml-1 -mr-1"
                         viewBox="0 0 20 20"
