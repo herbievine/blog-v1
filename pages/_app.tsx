@@ -5,6 +5,7 @@ import Banner from '../components/modules/Banner'
 import Footer from '../components/modules/Footer'
 import { useState } from 'react'
 import { ThemeContext } from '../components/contexts/ThemeContext'
+import { appWithTranslation } from 'next-i18next'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
@@ -17,7 +18,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Banner />
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <div className={theme}>
-          <div className="h-full bg-white dark:bg-gray-900">
+          <div className="min-h-screen bg-white dark:bg-gray-900">
             <Component {...pageProps} />
             <Footer />
           </div>
@@ -27,4 +28,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

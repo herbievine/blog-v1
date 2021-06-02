@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React from 'react'
-import useTranslation from 'next-translate/useTranslation'
+import { useTranslation } from 'next-i18next'
 import SolidTwitter from '../../icons/SolidTwitter'
 import SolidLinkedIn from '../../icons/SolidLinkedIn'
 import SolidGitHub from '../../icons/SolidGitHub'
@@ -11,7 +11,7 @@ interface FooterProps {}
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
   const socials = [
     {
       path: 'https://twitter.com/herbievine',
@@ -47,11 +47,11 @@ const Footer: React.FC<FooterProps> = ({}) => {
             <Link href={'/license'}>Copyright &copy; 2021</Link>
           </div>
           <div className="py-1">
-            <p>{t('common:footer:made')}</p>
+            <p>{t('made')}</p>
           </div>
           <div className="py-1">
             <a href="https://herbievine.com" target="_blank">
-              {t('common:footer:portfolio')}
+              {t('portfolio')}
             </a>
           </div>
           <div className="py-1">
@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
                 {({ open }) => (
                   <>
                     <Menu.Button className="inline-flex justify-center w-full leading-5 transition duration-150 ease-in-out focus:outline-none">
-                      <p>{t('common:footer:language')}</p>
+                      <p>{t('language')}</p>
                       <svg
                         className="w-5 h-5 ml-1 -mr-1"
                         viewBox="0 0 20 20"
