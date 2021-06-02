@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import withApollo from '../utils/withApollo'
+import withApollo from '../lib/withApollo'
 import {
   useFindLivePostsByTitleQuery,
   useFindLivePostsByUserQuery,

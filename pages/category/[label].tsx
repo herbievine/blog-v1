@@ -5,7 +5,7 @@ import DefaultWrapper from '../../components/layout/DefaultWrapper'
 import Navigation from '../../components/modules/Navigation'
 import SearchedPost, { Post } from '../../components/posts/SearchedPost'
 import { useFindByCategoryQuery } from '../../generated/graphql'
-import withApollo from '../../utils/withApollo'
+import withApollo from '../../lib/withApollo'
 
 interface CategoryProps {}
 
@@ -20,9 +20,9 @@ const Category: React.FC<CategoryProps> = ({}) => {
       <Navigation />
       <DefaultWrapper>
         <div className="w-full mt-24 flex flex-col justify-start items-center">
-          <h3 className=" text-lg text-gray-700 capitalize">
+          <h1 className=" text-lg text-gray-700 capitalize">
             {router.query.label}
-          </h3>
+          </h1>
 
           <div className="w-full mt-6 flex flex-col justify-start items-center">
             {loading ? (

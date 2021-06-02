@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useFindCategoriesQuery } from '../../generated/graphql'
-import processBrightness from '../../utils/processBrightness'
+import processBrightness from '../../lib/processBrightness'
 
 interface TopCategoriesProps {
   className?: string
@@ -13,7 +13,7 @@ const TopCategories: React.FC<TopCategoriesProps> = ({ className }) => {
 
   return (
     <div
-      className={`${className} p-6 rounded-lg flex flex-col dark:bg-gray-800 shadow-md`}
+      className={`${className} p-6 rounded-lg flex flex-col bg-gray-100 dark:bg-gray-800`}
     >
       <h2>Top categories</h2>
       <div className="mt-2 h-px w-full px-6 bg-gray-800 dark:bg-gray-100"></div>

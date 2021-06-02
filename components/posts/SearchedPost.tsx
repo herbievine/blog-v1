@@ -1,7 +1,7 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import processBrightness from '../../utils/processBrightness'
+import processBrightness from '../../lib/processBrightness'
 
 export type Post = {
   id: string
@@ -34,7 +34,7 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
   return (
     <div
       onClick={() => router.push(`/post/${post.slug}`)}
-      className="w-full py-4 px-6 rounded-lg flex flex-col dark:bg-gray-800 shadow-md mb-4 cursor-pointer transform transition hover:scale-105"
+      className="w-full py-4 px-6 rounded-lg flex flex-col bg-gray-100 dark:bg-gray-800 mb-4 cursor-pointer transform transition hover:scale-105"
     >
       <span className="text-xs font-medium">
         {post.user.displayName} ·{' '}

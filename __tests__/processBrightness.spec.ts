@@ -1,4 +1,4 @@
-import processBrightness from '../utils/processBrightness'
+import processBrightness from '../lib/processBrightness'
 
 describe('Process Brightness', () => {
   it('Should return 0 for black', () => {
