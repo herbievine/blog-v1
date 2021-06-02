@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useFindCategoriesQuery } from '../../generated/graphql'
 import { ThemeContext } from '../contexts/ThemeContext'
 import { SunIcon, MoonIcon } from '@heroicons/react/solid'
+import useTranslation from 'next-translate/useTranslation'
 
 interface NavigationProps {}
 
@@ -12,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   const { theme, setTheme } = useContext(ThemeContext)
   const router = useRouter()
   const { data, loading } = useFindCategoriesQuery()
+  const { t } = useTranslation()
 
   return (
     <div className="w-full flex justify-center bg-white dark:bg-gray-900 sticky top-0 z-50">
@@ -21,7 +23,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
         </div>
         <div className="flex items-center justify-end">
           <div className="mr-2 md:mr-6">
-            <Link href={'/latest'}>Latest</Link>
+            <Link href={'/latest'}>{t('common:nav:latest')}</Link>
           </div>
           {!loading && data?.categories?.length > 0 && (
             <div className="relative inline-block text-left mr-2 md:mr-6">
@@ -29,7 +31,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                 {({ open }) => (
                   <>
                     <Menu.Button className="inline-flex justify-center w-full px-3 py-1 leading-5 transition duration-150 ease-in-out focus:outline-none">
-                      <p>Categories</p>
+                      <p>{t('common:nav:categories')}</p>
                       <svg
                         className="w-5 h-5 ml-1 -mr-1"
                         viewBox="0 0 20 20"
@@ -54,7 +56,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                     >
                       <Menu.Items
                         static
-                        className="absolute right-0 w-56 mt-2 origin-top-right bg-white dark:bg-gray-800 divide-y divide-gray-100 rounded-md shadow-md outline-none"
+                        className="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 dark:bg-gray-800 divide-y divide-gray-100 rounded-md outline-none"
                       >
                         <div className="py-2">
                           {[...data.categories].map((category, index) => (
@@ -68,7 +70,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                                 <div
                                   className={`${
                                     active
-                                      ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                                      ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
                                       : 'text-gray-700 dark:text-gray-100'
                                   } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
                                 >

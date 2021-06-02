@@ -37,9 +37,9 @@ const Post: React.FC<PostProps> = ({}) => {
       <DefaultWrapper>
         {!loading && data?.posts[0] ? (
           <div className="w-full mt-24 flex flex-col justify-start items-center">
-            <h3 className="text-lg text-gray-700 capitalize">
+            <h1 className="text-lg text-gray-700 capitalize">
               {data.posts[0].title}
-            </h3>
+            </h1>
 
             <div className="w-full py-4 px-6 rounded-lg shadow-md mt-6 flex flex-col justify-start items-start">
               <ReactMarkdown remarkPlugins={[gfm]} className="default">
