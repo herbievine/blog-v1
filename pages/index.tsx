@@ -3,7 +3,7 @@ import React from 'react'
 import IndexLayout from '../components/layout/IndexLayout'
 import Navigation from '../components/modules/Navigation'
 import { useFindLatestQuery } from '../generated/graphql'
-import withApollo from '../utils/withApollo'
+import withApollo from '../lib/withApollo'
 
 interface IndexProps {}
 

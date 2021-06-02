@@ -8,7 +8,7 @@ import {
   useFindOneBySlugQuery,
   useIncrementViewMutation,
 } from '../../generated/graphql'
-import withApollo from '../../utils/withApollo'
+import withApollo from '../../lib/withApollo'
 import gfm from 'remark-gfm'
 
 interface PostProps {}

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useFindCategoriesQuery } from '../../generated/graphql'
-import processBrightness from '../../utils/processBrightness'
+import processBrightness from '../../lib/processBrightness'
 
 interface TopCategoriesProps {
   className?: string

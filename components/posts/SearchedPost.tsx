@@ -1,7 +1,7 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import processBrightness from '../../utils/processBrightness'
+import processBrightness from '../../lib/processBrightness'
 
 export type Post = {
   id: string

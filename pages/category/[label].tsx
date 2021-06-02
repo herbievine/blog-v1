@@ -5,7 +5,7 @@ import DefaultWrapper from '../../components/layout/DefaultWrapper'
 import Navigation from '../../components/modules/Navigation'
 import SearchedPost, { Post } from '../../components/posts/SearchedPost'
 import { useFindByCategoryQuery } from '../../generated/graphql'
-import withApollo from '../../utils/withApollo'
+import withApollo from '../../lib/withApollo'
 
 interface CategoryProps {}
 
