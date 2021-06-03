@@ -13,7 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
   const { theme, setTheme } = useContext(ThemeContext)
   const router = useRouter()
   const { data, loading } = useFindCategoriesQuery()
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
 
   return (
     <div className="w-full flex justify-center bg-white dark:bg-gray-900 sticky top-0 z-50">
