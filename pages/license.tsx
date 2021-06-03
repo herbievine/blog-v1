@@ -1,3 +1,4 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
 import DefaultWrapper from '../components/layout/DefaultWrapper'
 import Navigation from '../components/modules/Navigation'
@@ -44,5 +45,11 @@ const License: React.FC<LicenseProps> = ({}) => {
     </>
   )
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common', 'index'])),
+  },
+})
 
 export default withApollo({ ssr: false })(License)

@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from '@heroicons/react/solid'
+import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { useFindPopularQuery } from '../../generated/graphql'
 
@@ -10,13 +10,13 @@ interface PopularPostsProps {
 
 const PopularPosts: React.FC<PopularPostsProps> = ({ className }) => {
   const { data, loading } = useFindPopularQuery()
-  const router = useRouter()
+  const { t } = useTranslation('index')
 
   return (
     <div
       className={`${className} p-6 rounded-lg flex flex-col bg-gray-100 dark:bg-gray-800`}
     >
-      <h2>Popular posts</h2>
+      <h2>{t('popular')}</h2>
       <div className="mt-2 h-px w-full px-6 bg-gray-800 dark:bg-gray-100"></div>
       <div className="mt-4 flex flex-col items-start">
         {!loading && data?.posts?.length > 0 ? (

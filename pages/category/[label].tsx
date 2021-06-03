@@ -1,3 +1,4 @@
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 import React from 'react'
 import CategoryNotFound from '../../components/errors/CategoryNotFound'
@@ -46,5 +47,11 @@ const Category: React.FC<CategoryProps> = ({}) => {
     </>
   )
 }
+
+// export const getStaticProps = async ({ locale }) => ({
+//   props: {
+//     ...(await serverSideTranslations(locale, ['common', 'index'])),
+//   },
+// })
 
 export default withApollo({ ssr: true })(Category)

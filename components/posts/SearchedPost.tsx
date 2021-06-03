@@ -42,7 +42,7 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
       </span>
       <h4 className="mt-2 text-lg">{post.title}</h4>
       <div className="mt-2">
-        <p className="text-sm font-medium">{post.content.slice(0, 300)}...</p>
+        <p className="text-sm font-medium truncate">{post.content}</p>
       </div>
       <div className="mt-2 w-full flex justify-start">
         {post.categories &&

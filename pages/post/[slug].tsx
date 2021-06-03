@@ -10,6 +10,7 @@ import {
 } from '../../generated/graphql'
 import withApollo from '../../lib/withApollo'
 import gfm from 'remark-gfm'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 interface PostProps {}
 
@@ -54,5 +55,11 @@ const Post: React.FC<PostProps> = ({}) => {
     </>
   )
 }
+
+// export const getStaticProps = async ({ locale }) => ({
+//   props: {
+//     ...(await serverSideTranslations(locale, ['common', 'index'])),
+//   },
+// })
 
 export default withApollo({ ssr: true })(Post)

@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/solid'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useFindLatestQuery } from '../../generated/graphql'
@@ -11,10 +12,11 @@ interface ListPostsProps {
 const ListPosts: React.FC<ListPostsProps> = ({ className }) => {
   const { data, loading } = useFindLatestQuery()
   const router = useRouter()
+  const { t } = useTranslation('index')
 
   return (
     <div className={`flex flex-col justify-start items-start ${className}`}>
-      <h1 className="text-xl">Recently published</h1>
+      <h1 className="text-xl">{t('recent')}</h1>
       {!loading && data?.posts?.length > 0 ? (
         <div className="mt-6 w-full">
           {[...data.posts].map((post, index) => (
@@ -28,7 +30,7 @@ const ListPosts: React.FC<ListPostsProps> = ({ className }) => {
         className="mt-4 flex items-center cursor-pointer transform transition hover:scale-105 text-sm"
         onClick={() => router.push('/latest')}
       >
-        <p>See more posts</p>
+        <p>{t('more')}</p>
         <ArrowRightIcon className="ml-2 w-4" />
       </div>
     </div>
