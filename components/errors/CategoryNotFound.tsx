@@ -1,12 +1,9 @@
-import { useRouter } from 'next/router'
 import React from 'react'
 import Message from '../modules/Message'
 
 interface CategoryNotFoundProps {}
 
 const CategoryNotFound: React.FC<CategoryNotFoundProps> = ({}) => {
-  const router = useRouter()
-
   return (
     <div>
       <Message

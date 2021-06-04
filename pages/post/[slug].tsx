@@ -8,13 +8,10 @@ import {
   useIncrementViewMutation,
 } from '../../generated/graphql'
 import withApollo from '../../lib/withApollo'
-import Image from 'next/image'
 import gfm from 'remark-gfm'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ImageRenderer from '../../components/markdown/ImageRenderer'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { Components } from 'react-markdown/src/ast-to-react'
 import ReactMarkdown from 'react-markdown'
 
 interface PostProps {}

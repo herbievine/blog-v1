@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
 
   return (
     <div className="w-full flex justify-center bg-white dark:bg-gray-900 sticky top-0 z-50">
-      <div className="text-sm h-20 w-5/6 bg-white dark:bg-gray-900 flex items-center justify-between">
+      <div className="text-sm h-20 w-11/12 sm:w-5/6 bg-white dark:bg-gray-900 flex items-center justify-between">
         <div>
           <Link href={'/'}>Herbie Vine</Link>
         </div>
