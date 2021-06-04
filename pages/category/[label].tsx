@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import CategoryNotFound from '../../components/errors/CategoryNotFound'
-import DefaultWrapper from '../../components/layout/DefaultWrapper'
-import Navigation from '../../components/modules/Navigation'
-import SearchedPost, { Post } from '../../components/posts/SearchedPost'
-import { useFindByCategoryQuery } from '../../generated/graphql'
-import withApollo from '../../lib/withApollo'
+import CategoryNotFound from '@/components/errors/CategoryNotFound'
+import DefaultWrapper from '@/components/layout/DefaultWrapper'
+import Navigation from '@/components/modules/Navigation'
+import SearchedPost, { Post } from '@/components/posts/SearchedPost'
+import { useFindByCategoryQuery } from '@/generated/graphql'
+import withApollo from '@/lib/withApollo'
 
 interface CategoryProps {}
 
@@ -19,37 +19,34 @@ const Category: React.FC<CategoryProps> = ({}) => {
     <>
       <Navigation />
       <DefaultWrapper>
-        <div className="w-full mt-24 flex flex-col justify-start items-center">
-          <h1 className=" text-lg text-gray-700 capitalize">
-            {router.query.label}
-          </h1>
-
-          <div className="w-full mt-6 flex flex-col justify-start items-center">
-            {loading ? (
-              <p>loading...</p>
-            ) : (
-              <>
-                {data.posts?.length > 0 ? (
-                  <>
-                    {[...data.posts].map((post, index) => (
-                      <SearchedPost key={index} post={post as Post} />
-                    ))}
-                  </>
-                ) : (
-                  <CategoryNotFound />
-                )}
-              </>
-            )}
+        <div className="w-full">
+          <div className="w-full flex justify-center capitalize">
+            <h1>{router.query.label}</h1>
           </div>
+          {!loading ? (
+            <>
+              {data?.posts?.length > 0 ? (
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+                  {[...data.posts].map((post, index) => (
+                    <SearchedPost key={index} post={post as Post} />
+                  ))}
+                </div>
+              ) : (
+                <CategoryNotFound />
+              )}
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
       </DefaultWrapper>
     </>
   )
 }
 
-// export const getStaticProps = async ({ locale }) => ({
+// export const getServerSideProps = async ({ locale }) => ({
 //   props: {
-//     ...(await serverSideTranslations(locale, ['common', 'index'])),
+//     ...(await serverSideTranslations(locale, ['common', 'post-[slug]'])),
 //   },
 // })
 

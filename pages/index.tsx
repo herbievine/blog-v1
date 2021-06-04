@@ -1,9 +1,9 @@
 import React from 'react'
-import Navigation from '../components/modules/Navigation'
-import TopCategories from '../components/modules/TopCategories'
-import ListPosts from '../components/posts/ListPosts'
-import PopularPosts from '../components/posts/PopularPosts'
-import withApollo from '../lib/withApollo'
+import Navigation from '@/components/modules/Navigation'
+import TopCategories from '@/components/modules/TopCategories'
+import ListPosts from '@/components/posts/ListPosts'
+import PopularPosts from '@/components/posts/PopularPosts'
+import withApollo from '@/lib/withApollo'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 interface IndexProps {}

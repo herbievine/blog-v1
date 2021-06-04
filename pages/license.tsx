@@ -1,8 +1,8 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React from 'react'
-import DefaultWrapper from '../components/layout/DefaultWrapper'
-import Navigation from '../components/modules/Navigation'
-import withApollo from '../lib/withApollo'
+import DefaultWrapper from '@/components/layout/DefaultWrapper'
+import Navigation from '@/components/modules/Navigation'
+import withApollo from '@/lib/withApollo'
 
 interface LicenseProps {}
 

@@ -19,13 +19,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
+      "@/icons/*": ["icons/*"],
+      "@/generated/*": ["generated/*"],
+    }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "scripts/generateSitemap.js"  ],
   "exclude": [
     "node_modules"
   ]

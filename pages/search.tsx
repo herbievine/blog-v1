@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import withApollo from '../lib/withApollo'
+import withApollo from '@/lib/withApollo'
 import {
   useFindLivePostsByTitleQuery,
   useFindLivePostsByUserQuery,
   useFindLivePostsByCategoryQuery,
-} from '../generated/graphql'
-import SearchNotFound from '../components/errors/SearchNotFound'
-import SearchedPost, { Post } from '../components/posts/SearchedPost'
-import DefaultWrapper from '../components/layout/DefaultWrapper'
-import Navigation from '../components/modules/Navigation'
+} from '@/generated/graphql'
+import SearchNotFound from '@/components/errors/SearchNotFound'
+import SearchedPost, { Post } from '@/components/posts/SearchedPost'
+import DefaultWrapper from '@/components/layout/DefaultWrapper'
+import Navigation from '@/components/modules/Navigation'
 
 interface SearchProps {}
 

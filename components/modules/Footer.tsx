@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import React from 'react'
 import { useTranslation } from 'next-i18next'
-import SolidTwitter from '../../icons/SolidTwitter'
-import SolidLinkedIn from '../../icons/SolidLinkedIn'
-import SolidGitHub from '../../icons/SolidGitHub'
+import SolidTwitter from '@/icons/SolidTwitter'
+import SolidLinkedIn from '@/icons/SolidLinkedIn'
+import SolidGitHub from '@/icons/SolidGitHub'
 
 interface FooterProps {}
 

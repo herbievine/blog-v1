@@ -1,5 +1,5 @@
 import React from 'react'
-import Message from '../modules/Message'
+import Message from '@/components/modules/Message'
 
 interface SearchNotFoundProps {}
 
