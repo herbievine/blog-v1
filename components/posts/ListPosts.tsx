@@ -2,8 +2,8 @@ import { ArrowRightIcon } from '@heroicons/react/solid'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React from 'react'
-import { useFindLatestQuery } from '../../generated/graphql'
-import SearchedPost, { Post } from './SearchedPost'
+import { useFindLatestQuery } from '@/generated/graphql'
+import SearchedPost, { Post } from '@/components/posts/SearchedPost'
 
 interface ListPostsProps {
   className?: string

@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import PostNotFound from '../../components/errors/PostNotFound'
-import DefaultWrapper from '../../components/layout/DefaultWrapper'
-import Navigation from '../../components/modules/Navigation'
+import PostNotFound from '@/components/errors/PostNotFound'
+import DefaultWrapper from '@/components/layout/DefaultWrapper'
+import Navigation from '@/components/modules/Navigation'
 import {
   useFindOneBySlugQuery,
   useIncrementViewMutation,
-} from '../../generated/graphql'
-import withApollo from '../../lib/withApollo'
+} from '@/generated/graphql'
+import withApollo from '@/lib/withApollo'
 import gfm from 'remark-gfm'
-import ImageRenderer from '../../components/markdown/ImageRenderer'
+import ImageRenderer from '@/components/markdown/ImageRenderer'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import ReactMarkdown from 'react-markdown'

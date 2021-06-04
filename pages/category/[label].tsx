@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import React from 'react'
-import CategoryNotFound from '../../components/errors/CategoryNotFound'
-import DefaultWrapper from '../../components/layout/DefaultWrapper'
-import Navigation from '../../components/modules/Navigation'
-import SearchedPost, { Post } from '../../components/posts/SearchedPost'
-import { useFindByCategoryQuery } from '../../generated/graphql'
-import withApollo from '../../lib/withApollo'
+import CategoryNotFound from '@/components/errors/CategoryNotFound'
+import DefaultWrapper from '@/components/layout/DefaultWrapper'
+import Navigation from '@/components/modules/Navigation'
+import SearchedPost, { Post } from '@/components/posts/SearchedPost'
+import { useFindByCategoryQuery } from '@/generated/graphql'
+import withApollo from '@/lib/withApollo'
 
 interface CategoryProps {}
 

@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "prettier": "prettier -w \"(__tests__|pages|components|utils|cypress)/**/*.(ts|js|tsx|jsx)\"",
+    "prettier": "prettier -w \"(__tests__|pages|components|lib|icons)/**/*.(ts|js|tsx|jsx)\"",
     "gen": "graphql-codegen --config codegen.yml",
     "test": "yarn test:jest",
     "test:jest": "jest --config ./jest.config.json"

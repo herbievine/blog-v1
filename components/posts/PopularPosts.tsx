@@ -2,7 +2,7 @@ import { ArrowRightIcon } from '@heroicons/react/solid'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import React from 'react'
-import { useFindPopularQuery } from '../../generated/graphql'
+import { useFindPopularQuery } from '@/generated/graphql'
 
 interface PopularPostsProps {
   className?: string
