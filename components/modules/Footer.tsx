@@ -88,28 +88,29 @@ const Footer: React.FC<FooterProps> = ({}) => {
                         className="absolute left-0 bottom-0 w-56 mb-6 mt-2 origin-bottom-right bg-gray-100 dark:bg-gray-800 divide-y divide-gray-100 rounded-md outline-none"
                       >
                         <div className="py-2">
-                          {[...router.locales].map((locale, index) => (
-                            <Menu.Item
-                              key={index}
-                              onClick={() =>
-                                router.push(router.asPath, router.asPath, {
-                                  locale,
-                                })
-                              }
-                            >
-                              {({ active }) => (
-                                <div
-                                  className={`${
-                                    active
-                                      ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
-                                      : 'text-gray-700 dark:text-gray-100'
-                                  } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
-                                >
-                                  <p>{locale}</p>
-                                </div>
-                              )}
-                            </Menu.Item>
-                          ))}
+                          {router.locales &&
+                            [...router.locales].map((locale, index) => (
+                              <Menu.Item
+                                key={index}
+                                onClick={() =>
+                                  router.push(router.asPath, router.asPath, {
+                                    locale,
+                                  })
+                                }
+                              >
+                                {({ active }) => (
+                                  <div
+                                    className={`${
+                                      active
+                                        ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                                        : 'text-gray-700 dark:text-gray-100'
+                                    } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
+                                  >
+                                    <p>{locale}</p>
+                                  </div>
+                                )}
+                              </Menu.Item>
+                            ))}
                         </div>
                       </Menu.Items>
                     </Transition>
