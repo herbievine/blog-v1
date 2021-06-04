@@ -34,7 +34,7 @@ const SearchedPost: React.FC<SearchedPostProps> = ({ post }) => {
   return (
     <div
       onClick={() => router.push(`/post/${post.slug}`)}
-      className="w-full py-4 px-6 rounded-lg flex flex-col bg-gray-100 dark:bg-gray-800 mb-4 cursor-pointer transform transition hover:scale-105"
+      className="w-full py-4 px-6 rounded-lg flex flex-col bg-gray-100 dark:bg-gray-800 mb-4 cursor-pointer"
     >
       <span className="text-xs font-medium">
         {post.user.displayName} ·{' '}

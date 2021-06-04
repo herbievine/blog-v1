@@ -122,6 +122,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
         <div className="flex flex-col items-start justify-start">
           {[...socials].map((social, index) => (
             <div
+              key={index}
               className={index !== socials.length - 1 ? 'mb-2' : ''}
               onClick={() => window.open(social.path, 'blank')}
             >

@@ -26,7 +26,7 @@
   }
 }
 
-p,
+/* p,
 h1,
 h2,
 h3,
@@ -41,7 +41,7 @@ div {
   transition: ease background-color 200ms, ease border-top-color 200ms,
     ease border-right-color 200ms, ease border-bottom-color 200ms,
     ease border-left-color 200ms;
-}
+} */
 
 /* Markdown Styling */
 

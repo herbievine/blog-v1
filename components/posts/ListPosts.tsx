@@ -27,7 +27,7 @@ const ListPosts: React.FC<ListPostsProps> = ({ className }) => {
         <p>Loading...</p>
       )}
       <div
-        className="mt-4 flex items-center cursor-pointer transform transition hover:scale-105 text-sm"
+        className="mt-4 flex items-center cursor-pointer text-sm"
         onClick={() => router.push('/latest')}
       >
         <p>{t('more')}</p>

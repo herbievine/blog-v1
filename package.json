@@ -22,6 +22,7 @@
     "dayjs": "^1.10.4",
     "graphql": "^15.5.0",
     "isomorphic-unfetch": "^3.1.0",
+    "mdast": "^3.0.0",
     "mocha": "^8.4.0",
     "next": "10.2.0",
     "next-apollo": "^5.0.4",

@@ -24,7 +24,7 @@ const PopularPosts: React.FC<PopularPostsProps> = ({ className }) => {
             {[...data.posts].map((post, index) => (
               <div
                 key={index}
-                className={`text-sm flex items-center cursor-pointer transform transition hover:scale-105 ${
+                className={`text-sm flex items-center cursor-pointer ${
                   index !== data.posts.length - 1 && 'mb-2'
                 }`}
               >
