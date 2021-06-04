@@ -6,9 +6,12 @@ import Footer from '../components/modules/Footer'
 import { useState } from 'react'
 import { ThemeContext } from '../components/contexts/ThemeContext'
 import { appWithTranslation } from 'next-i18next'
+import loadTimeDay from '@/lib/loadTimeDay'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark')
+
+  loadTimeDay()
 
   return (
     <>

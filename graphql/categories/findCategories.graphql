@@ -1,5 +1,8 @@
 query FindCategories {
   categories {
     ...Category
+    posts {
+      id
+    }
   }
 }

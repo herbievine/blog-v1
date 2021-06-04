@@ -59,26 +59,28 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
                         className="absolute right-0 w-56 mt-2 origin-top-right bg-gray-100 dark:bg-gray-800 divide-y divide-gray-100 rounded-md outline-none"
                       >
                         <div className="py-2">
-                          {[...data.categories].map((category, index) => (
-                            <Menu.Item
-                              key={index}
-                              onClick={() =>
-                                router.push(`/category/${category.label}`)
-                              }
-                            >
-                              {({ active }) => (
-                                <div
-                                  className={`${
-                                    active
-                                      ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
-                                      : 'text-gray-700 dark:text-gray-100'
-                                  } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
-                                >
-                                  <p>{category.label}</p>
-                                </div>
-                              )}
-                            </Menu.Item>
-                          ))}
+                          {[...data.categories].map((category, index) =>
+                            category.posts.length > 0 ? (
+                              <Menu.Item
+                                key={index}
+                                onClick={() =>
+                                  router.push(`/category/${category.label}`)
+                                }
+                              >
+                                {({ active }) => (
+                                  <div
+                                    className={`${
+                                      active
+                                        ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                                        : 'text-gray-700 dark:text-gray-100'
+                                    } flex justify-between w-full px-4 py-2 text-sm font-medium capitalize leading-5 text-left cursor-pointer`}
+                                  >
+                                    <p>{category.label}</p>
+                                  </div>
+                                )}
+                              </Menu.Item>
+                            ) : null
+                          )}
                         </div>
                       </Menu.Items>
                     </Transition>
@@ -94,9 +96,9 @@ const Navigation: React.FC<NavigationProps> = ({}) => {
             }
           >
             {theme === 'dark' ? (
-              <SunIcon className="mr-2 w-5 text-white" />
+              <SunIcon className="w-5 text-white" />
             ) : (
-              <MoonIcon className="mr-2 w-5 text-gray-800" />
+              <MoonIcon className="w-5 text-gray-800" />
             )}
           </div>
         </div>
