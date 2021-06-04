@@ -6,7 +6,6 @@ import Navigation from '@/components/modules/Navigation'
 import SearchedPost, { Post } from '@/components/posts/SearchedPost'
 import { useFindByCategoryQuery } from '@/generated/graphql'
 import withApollo from '@/lib/withApollo'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 interface CategoryProps {}
 
@@ -45,10 +44,10 @@ const Category: React.FC<CategoryProps> = ({}) => {
   )
 }
 
-export const getServerSideProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common', 'post-[slug]'])),
-  },
-})
+// export const getServerSideProps = async ({ locale }) => ({
+//   props: {
+//     ...(await serverSideTranslations(locale, ['common', 'post-[slug]'])),
+//   },
+// })
 
-export default withApollo({ ssr: false })(Category)
+export default withApollo({ ssr: true })(Category)
