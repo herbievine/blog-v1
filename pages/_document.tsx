@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import Navigation from '../components/modules/Navigation'
 
 class MyDocument extends Document {
   render() {

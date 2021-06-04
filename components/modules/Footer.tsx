@@ -40,7 +40,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
   ]
 
   return (
-    <footer className="font-medium w-5/6 mx-auto text-sm mt-8 bg-white dark:bg-gray-900">
+    <footer className="font-medium w-11/12 sm:w-5/6 mx-auto text-sm mt-8 bg-white dark:bg-gray-900">
       <div className="py-12 flex items-center justify-between">
         <div className="flex flex-col items-start justify-start">
           <div className="py-1">
