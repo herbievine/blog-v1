@@ -2,6 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import processBrightness from '@/lib/processBrightness'
+import { Posts } from '@/generated/graphql'
 
 export type Post = {
   id: string
@@ -18,9 +19,8 @@ export type Post = {
   ]
   user?: {
     id: string
-    username: string
-    email: string
-    displayName: string
+    username?: string
+    displayName?: string
   }
 }
 

@@ -1,87 +1,118 @@
-import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
 import PostNotFound from '@/components/errors/PostNotFound'
 import DefaultWrapper from '@/components/layout/DefaultWrapper'
 import Navigation from '@/components/modules/Navigation'
 import {
+  Posts,
   useFindOneBySlugQuery,
   useIncrementViewMutation,
 } from '@/generated/graphql'
-import withApollo from '@/lib/withApollo'
+import withApollo, { apolloClient } from '@/lib/withApollo'
 import gfm from 'remark-gfm'
 import ImageRenderer from '@/components/markdown/ImageRenderer'
 import dayjs from 'dayjs'
 import ReactMarkdown from 'react-markdown'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { ApolloError, gql } from '@apollo/client'
+import { FIND_ALL_POSTS, FIND_POST_BY_SLUG } from 'graphql/static'
 
-interface PostProps {}
+interface PostProps {
+  post: Posts
+}
 
-const Post: React.FC<PostProps> = ({}) => {
-  const router = useRouter()
-  const { data, loading } = useFindOneBySlugQuery({
-    variables: { slug: router.query.slug as string },
-  })
+const Post: React.FC<PostProps> = ({ post }) => {
   const [incrementViews] = useIncrementViewMutation()
-  // const { t } = useTranslation('post-[slug]')
+  const { t } = useTranslation('post-[slug]')
 
   useEffect(() => {
-    if (!loading && data?.posts[0]?.id) {
+    if (post.id) {
       incrementViews({
         variables: {
-          id: data.posts[0].id,
-          views: data.posts[0].views ?? 0 + 1,
+          id: post.id,
+          views: post.views ?? 0 + 1,
         },
       })
     }
-  }, [loading])
+  }, [])
 
   return (
     <>
       <Navigation />
       <DefaultWrapper>
-        {!loading ? (
-          <>
-            {data?.posts[0] ? (
-              <div className="w-full flex flex-col justify-start items-start">
-                <h1 className="text-4xl font-extrabold">
-                  {data.posts[0].title}
-                </h1>
-                <span className="mt-3 text-xs font-medium">
-                  {/*
-                    {
-                      t('written')}
-                    }
-                  */}
-                  Written by {data.posts[0].user.displayName}{' '}
-                  {dayjs().to(dayjs(data.posts[0].created_at))}
-                </span>
-                <article className="w-full mt-4 text-justify">
-                  <ReactMarkdown
-                    components={{
-                      img: ({ node }) => <ImageRenderer node={node} />,
-                    }}
-                    remarkPlugins={[gfm]}
-                    className="default"
-                  >
-                    {data.posts[0].content}
-                  </ReactMarkdown>
-                </article>
-              </div>
-            ) : (
-              <PostNotFound />
-            )}
-          </>
+        {post.id ? (
+          <div className="w-full flex flex-col justify-start items-start">
+            <h1 className="text-4xl font-extrabold">{post.title}</h1>
+            <span className="mt-3 text-xs font-medium">
+              {t('written')} {post.user.displayName}{' '}
+              {dayjs().to(dayjs(post.created_at))}
+            </span>
+            <article className="w-full mt-4 text-justify">
+              <ReactMarkdown
+                components={{
+                  img: ({ node }) => <ImageRenderer node={node} />,
+                }}
+                remarkPlugins={[gfm]}
+                className="default"
+              >
+                {post.content}
+              </ReactMarkdown>
+            </article>
+          </div>
         ) : (
-          <p>Loading...</p>
+          <PostNotFound />
         )}
       </DefaultWrapper>
     </>
   )
 }
 
-// export const getServerSideProps = async ({ locale }) => ({
-//   props: {
-//     ...(await serverSideTranslations(locale, ['common', 'post-[slug]'])),
-//   },
-// })
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const {
+    data,
+  }: {
+    data: {
+      posts: Array<Posts>
+    }
+  } = await apolloClient.query({
+    query: FIND_POST_BY_SLUG,
+    variables: {
+      slug: params.slug,
+    },
+  })
 
-export default withApollo({ ssr: true })(Post)
+  return {
+    props: {
+      post: data.posts[0],
+      ...(await serverSideTranslations(locale, ['common', 'post-[slug]'])),
+    },
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const { data }: { data: { posts: Array<{ slug: string }> } } =
+    await apolloClient.query({
+      query: FIND_ALL_POSTS,
+    })
+
+  const paths = locales.reduce(
+    (acc, next) => [
+      ...acc,
+      ...data.posts.map(({ slug }) => ({
+        params: {
+          slug,
+        },
+        locale: next,
+      })),
+    ],
+    []
+  )
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export default withApollo({ ssr: false })(Post)

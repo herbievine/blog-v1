@@ -20,7 +20,7 @@ const ListPosts: React.FC<ListPostsProps> = ({ className }) => {
       {!loading && data?.posts?.length > 0 ? (
         <div className="mt-6 w-full">
           {[...data.posts].map((post, index) => (
-            <SearchedPost key={index} post={post as Post} />
+            <SearchedPost key={index} post={post as unknown as Post} />
           ))}
         </div>
       ) : (

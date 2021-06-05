@@ -22,33 +22,35 @@ const TopCategories: React.FC<TopCategoriesProps> = ({ className }) => {
       <div className="mt-4 flex justify-start">
         {!loading && data?.categories?.length > 0 ? (
           <>
-            {[...data.categories].map((category, index) => (
-              <div
-                onClick={() => router.push(`/category/${category.label}`)}
-                key={index}
-                className={`py-1 px-3 rounded-full border cursor-pointer ${
-                  index !== data.categories.length - 1 && 'mr-2'
-                }`}
-                style={{
-                  borderColor: category.hexColor,
-                  background: category.hexColor,
-                }}
-              >
-                <p
-                  className="text-xs"
+            {[...data.categories].map((category, index) =>
+              category.posts.length > 0 ? (
+                <div
+                  onClick={() => router.push(`/category/${category.label}`)}
+                  key={index}
+                  className={`py-1 px-3 rounded-full border cursor-pointer ${
+                    index !== data.categories.length - 1 && 'mr-2'
+                  }`}
                   style={{
-                    color:
-                      parseFloat(
-                        processBrightness(data.categories[index]?.hexColor)
-                      ) > 0.5
-                        ? '#000000'
-                        : '#ffffff',
+                    borderColor: category.hexColor,
+                    background: category.hexColor,
                   }}
                 >
-                  {category.label}
-                </p>
-              </div>
-            ))}
+                  <p
+                    className="text-xs"
+                    style={{
+                      color:
+                        parseFloat(
+                          processBrightness(data.categories[index]?.hexColor)
+                        ) > 0.5
+                          ? '#000000'
+                          : '#ffffff',
+                    }}
+                  >
+                    {category.label}
+                  </p>
+                </div>
+              ) : null
+            )}
           </>
         ) : (
           <p>Loading...</p>
