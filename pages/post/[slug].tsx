@@ -90,15 +90,24 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const { data }: { data: { posts: Array<{ slug: string }> } } =
     await apolloClient.query({
       query: FIND_ALL_POSTS,
     })
 
-  const paths = data.posts.map((post) => ({
-    params: { slug: post.slug },
-  }))
+  const paths = locales.reduce(
+    (acc, next) => [
+      ...acc,
+      ...data.posts.map(({ slug }) => ({
+        params: {
+          slug,
+        },
+        locale: next,
+      })),
+    ],
+    []
+  )
 
   return {
     paths,

@@ -66,15 +66,24 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const { data }: { data: { categories: Array<Categories> } } =
     await apolloClient.query({
       query: FIND_ALL_CATEGORIES,
     })
 
-  const paths = data.categories.map((category) => ({
-    params: { label: category.label },
-  }))
+  const paths = locales.reduce(
+    (acc, next) => [
+      ...acc,
+      ...data.categories.map(({ label }) => ({
+        params: {
+          label,
+        },
+        locale: next,
+      })),
+    ],
+    []
+  )
 
   return {
     paths,
