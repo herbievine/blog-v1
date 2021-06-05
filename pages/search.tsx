@@ -76,7 +76,10 @@ const Search: React.FC<SearchProps> = ({}) => {
                   {data?.posts?.length > 0 ? (
                     <>
                       {[...data.posts].map((post, index) => (
-                        <SearchedPost key={index} post={post as Post} />
+                        <SearchedPost
+                          key={index}
+                          post={post as unknown as Post}
+                        />
                       ))}
                     </>
                   ) : (

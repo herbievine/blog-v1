@@ -1,6 +1,5 @@
 fragment User on UsersPermissionsUser {
   id
   username
-  email
   displayName
 }

@@ -1265,17 +1265,17 @@ export type FindCategoriesQuery = (
 
 export type CategoryFragment = (
   { __typename?: 'Category' }
-  & Pick<Category, 'label' | 'hexColor'>
+  & Pick<Category, 'label' | 'hexColor' | 'created_at' | 'updated_at'>
 );
 
 export type PostFragment = (
   { __typename?: 'Posts' }
-  & Pick<Posts, 'id' | 'title' | 'slug' | 'views' | 'content' | 'created_at'>
+  & Pick<Posts, 'id' | 'title' | 'slug' | 'views' | 'content' | 'created_at' | 'updated_at'>
 );
 
 export type UserFragment = (
   { __typename?: 'UsersPermissionsUser' }
-  & Pick<UsersPermissionsUser, 'id' | 'username' | 'email' | 'displayName'>
+  & Pick<UsersPermissionsUser, 'id' | 'username' | 'email' | 'displayName' | 'created_at' | 'updated_at'>
 );
 
 export type FindByCategoryQueryVariables = Exact<{
@@ -1448,6 +1448,8 @@ export const CategoryFragmentDoc = gql`
     fragment Category on Category {
   label
   hexColor
+  created_at
+  updated_at
 }
     `;
 export const PostFragmentDoc = gql`
@@ -1458,6 +1460,7 @@ export const PostFragmentDoc = gql`
   views
   content
   created_at
+  updated_at
 }
     `;
 export const UserFragmentDoc = gql`
@@ -1466,6 +1469,8 @@ export const UserFragmentDoc = gql`
   username
   email
   displayName
+  created_at
+  updated_at
 }
     `;
 export const FindCategoriesDocument = gql`
