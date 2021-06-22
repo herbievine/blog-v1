@@ -50,11 +50,6 @@ const Footer: React.FC<FooterProps> = ({}) => {
             <p>{t('made')}</p>
           </div>
           <div className="py-1">
-            <a href="https://herbievine.com" target="_blank">
-              {t('portfolio')}
-            </a>
-          </div>
-          <div className="py-1">
             <div className="relative inline-block text-right">
               <Menu>
                 {({ open }) => (
